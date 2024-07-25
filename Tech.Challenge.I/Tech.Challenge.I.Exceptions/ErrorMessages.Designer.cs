@@ -61,11 +61,65 @@ namespace Tech.Challenge.I.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Email do usuário em branco.
+        /// </summary>
+        public static string BlankUserEmail {
+            get {
+                return ResourceManager.GetString("BlankUserEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Nome do usuário em branco.
+        /// </summary>
+        public static string BlankUserName {
+            get {
+                return ResourceManager.GetString("BlankUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Senha do usuário em branco.
+        /// </summary>
+        public static string BlankUserPassword {
+            get {
+                return ResourceManager.GetString("BlankUserPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Email já cadastrado.
+        /// </summary>
+        public static string EmailAlreadyRegistered {
+            get {
+                return ResourceManager.GetString("EmailAlreadyRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a E-mail ou senha incorretos.
         /// </summary>
         public static string InvalidLogin {
             get {
                 return ResourceManager.GetString("InvalidLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Email do usuário é inválido.
+        /// </summary>
+        public static string InvalidUserEmail {
+            get {
+                return ResourceManager.GetString("InvalidUserEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Senha deve conter ao menos seis caracteres.
+        /// </summary>
+        public static string MinimumSixCharacters {
+            get {
+                return ResourceManager.GetString("MinimumSixCharacters", resourceCulture);
             }
         }
         

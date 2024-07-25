@@ -4,7 +4,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using Tech.Challenge.I.Domain.Extension;
+using Tech.Challenge.I.Domain.Repositories;
+using Tech.Challenge.I.Domain.Repositories.User;
 using Tech.Challenge.I.Infrastructure.RepositoryAccess;
+using Tech.Challenge.I.Infrastructure.RepositoryAccess.Repository;
 
 namespace Tech.Challenge.I.Infrastructure;
 public static class Initializer
@@ -13,6 +16,13 @@ public static class Initializer
     {
         AddFluentMigrator(services, configurationManager);
         AddContext(services, configurationManager);
+        AddRepositories(services);
+        AddWorkUnit(services);
+    }
+
+    private static void AddWorkUnit(IServiceCollection services)
+    {
+        services.AddScoped<IWorkUnit, WorkUnit>();
     }
 
     private static void AddFluentMigrator(IServiceCollection services, IConfiguration configurationManager)
@@ -42,5 +52,12 @@ public static class Initializer
                 dbContextoOpcoes.UseMySql(connectionString, versaoServidor);
             });
         }
+    }
+
+    private static void AddRepositories(IServiceCollection services)
+    {
+        services
+            .AddScoped<IUserReadOnlyRepository, UserRepository>()
+            .AddScoped<IUserWriteOnlyRepository, UserRepository>();
     }
 }

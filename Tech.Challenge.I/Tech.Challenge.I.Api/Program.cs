@@ -3,6 +3,8 @@ using Tech.Challenge.I.Infrastructure.Migrations;
 using Tech.Challenge.I.Infrastructure.RepositoryAccess;
 using Tech.Challenge.I.Domain.Extension;
 using Tech.Challenge.I.Infrastructure;
+using Tech.Challenge.I.Application;
+using Tech.Challenge.I.Application.Services.Automapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,9 +18,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddInfrastructure(builder.Configuration);
-//builder.Services.AddApplication(builder.Configuration);
+builder.Services.AddApplication(builder.Configuration);
 
 builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilters)));
+
+builder.Services.AddScoped(provider => new AutoMapper.MapperConfiguration(cfg =>
+{
+    cfg.AddProfile(new TechChallangeProfile());
+}).CreateMapper());
 
 var app = builder.Build();
 
