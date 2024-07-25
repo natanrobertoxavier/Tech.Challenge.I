@@ -7,7 +7,7 @@ using Tech.Challenge.I.Exceptions;
 
 namespace Tech.Challenge.I.Api.Filters;
 
-public class ExceptionFilters
+public class ExceptionFilters : IExceptionFilter
 {
     public void OnException(ExceptionContext context)
     {

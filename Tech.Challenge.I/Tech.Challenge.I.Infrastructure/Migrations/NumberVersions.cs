@@ -1,0 +1,6 @@
+﻿namespace Tech.Challenge.I.Infrastructure.Migrations;
+
+public enum NumberVersions
+{
+    CreateUsersTable = 1,
+}
