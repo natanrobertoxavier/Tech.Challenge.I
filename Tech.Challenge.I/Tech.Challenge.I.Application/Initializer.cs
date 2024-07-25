@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Tech.Challenge.I.Application.Services.Cryptography;
+using Tech.Challenge.I.Application.Services.LoggedUser;
 using Tech.Challenge.I.Application.Services.Token;
+using Tech.Challenge.I.Application.UseCase.User.ChangePassword;
 using Tech.Challenge.I.Application.UseCase.User.Register;
 
 namespace Tech.Challenge.I.Application;
@@ -31,5 +33,7 @@ public static class Initializer
     private static void AddUseCases(IServiceCollection services)
     {
         services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
+        services.AddScoped<IChangePasswordUseCase, ChangePasswordUseCase>();
+        services.AddScoped<ILoggedUser, LoggedUser>();
     }
 }

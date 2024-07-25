@@ -129,6 +129,12 @@
   <data name="EmailAlreadyRegistered" xml:space="preserve">
     <value>Email já cadastrado</value>
   </data>
+  <data name="ExpiredToken" xml:space="preserve">
+    <value>Token expirado</value>
+  </data>
+  <data name="InvalidCurrentPassword" xml:space="preserve">
+    <value>Senha atual incorreta</value>
+  </data>
   <data name="InvalidLogin" xml:space="preserve">
     <value>E-mail ou senha incorretos</value>
   </data>
@@ -140,5 +146,8 @@
   </data>
   <data name="UnknowError" xml:space="preserve">
     <value>Erro desconhecido</value>
+  </data>
+  <data name="UserWithoutPermission" xml:space="preserve">
+    <value>Usuário sem permissão</value>
   </data>
 </root>

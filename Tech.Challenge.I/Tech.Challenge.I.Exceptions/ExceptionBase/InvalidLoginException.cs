@@ -5,7 +5,7 @@ namespace Tech.Challenge.I.Exceptions.ExceptionBase;
 [Serializable]
 public class InvalidLoginException : TechChallengeException
 {
-    public InvalidLoginException() : base(ErrorMessages.InvalidLogin)
+    public InvalidLoginException() : base(ErrorsMessages.InvalidLogin)
     {
     }
 

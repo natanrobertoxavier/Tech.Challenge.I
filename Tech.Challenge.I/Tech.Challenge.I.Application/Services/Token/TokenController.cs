@@ -7,7 +7,7 @@ public class TokenController(
     double tokenLifetimeInMinutes,
     string securityKey)
 {
-    private const string EmailAlias = "email";
+    private const string EmailAlias = "eml";
     private readonly double _tokenLifetimeInMinutes = tokenLifetimeInMinutes;
     private readonly string _securitykey = securityKey;
 
@@ -15,7 +15,7 @@ public class TokenController(
     {
         var claims = new List<Claim>
         {
-            new Claim(EmailAlias, userEmail),
+            new Claim(EmailAlias, userEmail)
         };
 
         var tokenHandler = new JwtSecurityTokenHandler();

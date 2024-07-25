@@ -58,6 +58,7 @@ public static class Initializer
     {
         services
             .AddScoped<IUserReadOnlyRepository, UserRepository>()
-            .AddScoped<IUserWriteOnlyRepository, UserRepository>();
+            .AddScoped<IUserWriteOnlyRepository, UserRepository>()
+            .AddScoped<IUserUpdateOnlyRepository, UserRepository>();
     }
 }

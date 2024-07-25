@@ -22,14 +22,14 @@ namespace Tech.Challenge.I.Exceptions {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ErrorMessages {
+    public class ErrorsMessages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ErrorMessages() {
+        internal ErrorsMessages() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Tech.Challenge.I.Exceptions {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Tech.Challenge.I.Exceptions.ErrorMessages", typeof(ErrorMessages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Tech.Challenge.I.Exceptions.ErrorsMessages", typeof(ErrorsMessages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -97,6 +97,24 @@ namespace Tech.Challenge.I.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Token expirado.
+        /// </summary>
+        public static string ExpiredToken {
+            get {
+                return ResourceManager.GetString("ExpiredToken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Senha atual incorreta.
+        /// </summary>
+        public static string InvalidCurrentPassword {
+            get {
+                return ResourceManager.GetString("InvalidCurrentPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a E-mail ou senha incorretos.
         /// </summary>
         public static string InvalidLogin {
@@ -129,6 +147,15 @@ namespace Tech.Challenge.I.Exceptions {
         public static string UnknowError {
             get {
                 return ResourceManager.GetString("UnknowError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Usuário sem permissão.
+        /// </summary>
+        public static string UserWithoutPermission {
+            get {
+                return ResourceManager.GetString("UserWithoutPermission", resourceCulture);
             }
         }
     }

@@ -5,27 +5,30 @@ using Tech.Challenge.I.Domain.Repositories.User;
 namespace Tech.Challenge.I.Infrastructure.RepositoryAccess.Repository;
 
 public class UserRepository(
-    TechChallengeContext context) : IUserReadOnlyRepository, IUserWriteOnlyRepository
+    TechChallengeContext context) : IUserReadOnlyRepository, 
+                                    IUserWriteOnlyRepository, 
+                                    IUserUpdateOnlyRepository
 {
     private readonly TechChallengeContext _context = context;
 
-    public async Task<bool> ThereIsUserWithEmail(string email)
-    {
-        return await _context.Users.AnyAsync(c => c.Email.Equals(email));
-    }
+    public async Task<bool> ThereIsUserWithEmail(string email) => 
+        await _context.Users.AnyAsync(c => c.Email.Equals(email));
 
-    public Task<User> RecoverByEmail(string email)
-    {
-        throw new NotImplementedException();
-    }
+    public async Task<User> RecoverByEmail(string email) =>
+       await _context.Users.AsNoTracking()
+            .FirstOrDefaultAsync(c => c.Email.Equals(email)) ?? new User();
 
     public Task<User> RecoverByEmailPassword(string email, string senha)
     {
         throw new NotImplementedException();
     }
 
-    public async Task Add(User user)
-    {
+    public async Task Add(User user) =>
         await _context.Users.AddAsync(user);
-    }
+
+    public void Update(User user) =>
+        _context.Users.Update(user);
+
+    public async Task<User> RecoverById(Guid id) => await _context.Users.
+            FirstOrDefaultAsync(c => c.Id == id) ?? new User();
 }

@@ -52,7 +52,7 @@ public class RegisterUserUseCase(
 
         if (thereIsUserWithEmail)
         {
-            validationResult.Errors.Add(new FluentValidation.Results.ValidationFailure("email", ErrorMessages.EmailAlreadyRegistered));
+            validationResult.Errors.Add(new FluentValidation.Results.ValidationFailure("email", ErrorsMessages.EmailAlreadyRegistered));
         }
 
         if (!validationResult.IsValid)

@@ -35,23 +35,23 @@ public class ExceptionFilters : IExceptionFilter
 
     private static void TratarErrosDeValidacaoException(ExceptionContext context)
     {
-        var erroDeValidacaoException = context.Exception as ValidationErrosException;
+        var validationErrorException = context.Exception as ValidationErrosException;
 
         context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-        context.Result = new ObjectResult(new ErrorResponseJson(erroDeValidacaoException.MensagensDeErro));
+        context.Result = new ObjectResult(new ErrorResponseJson(validationErrorException.MensagensDeErro));
     }
 
     private static void TratarLoginException(ExceptionContext context)
     {
-        var erroLogin = context.Exception as InvalidLoginException;
+        var loginError = context.Exception as InvalidLoginException;
 
         context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-        context.Result = new ObjectResult(new ErrorResponseJson(erroLogin.Message));
+        context.Result = new ObjectResult(new ErrorResponseJson(loginError.Message));
     }
 
     private static void LancarErroDesconhecido(ExceptionContext context)
     {
         context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-        context.Result = new ObjectResult(new ErrorResponseJson(ErrorMessages.UnknowError));
+        context.Result = new ObjectResult(new ErrorResponseJson(ErrorsMessages.UnknowError));
     }
 }

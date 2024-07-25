@@ -7,10 +7,10 @@ public class PasswordValidator : AbstractValidator<string>
 {
     public PasswordValidator()
     {
-        RuleFor(password => password).NotEmpty().WithMessage(ErrorMessages.BlankUserPassword);
+        RuleFor(password => password).NotEmpty().WithMessage(ErrorsMessages.BlankUserPassword);
         When(password => !string.IsNullOrWhiteSpace(password), () =>
         {
-            RuleFor(password => password.Length).GreaterThanOrEqualTo(6).WithMessage(ErrorMessages.MinimumSixCharacters);
+            RuleFor(password => password.Length).GreaterThanOrEqualTo(6).WithMessage(ErrorsMessages.MinimumSixCharacters);
         });
     }
 }
