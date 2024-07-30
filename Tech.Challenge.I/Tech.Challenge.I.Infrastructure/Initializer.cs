@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using Tech.Challenge.I.Domain.Extension;
 using Tech.Challenge.I.Domain.Repositories;
+using Tech.Challenge.I.Domain.Repositories.DDD;
 using Tech.Challenge.I.Domain.Repositories.User;
 using Tech.Challenge.I.Infrastructure.RepositoryAccess;
 using Tech.Challenge.I.Infrastructure.RepositoryAccess.Repository;
@@ -59,6 +60,8 @@ public static class Initializer
         services
             .AddScoped<IUserReadOnlyRepository, UserRepository>()
             .AddScoped<IUserWriteOnlyRepository, UserRepository>()
-            .AddScoped<IUserUpdateOnlyRepository, UserRepository>();
+            .AddScoped<IUserUpdateOnlyRepository, UserRepository>()
+            .AddScoped <IRegionDDDReadOnlyRepository, RegionDDDRepository>()
+            .AddScoped <IRegionDDDWriteOnlyRepository, RegionDDDRepository>();
     }
 }

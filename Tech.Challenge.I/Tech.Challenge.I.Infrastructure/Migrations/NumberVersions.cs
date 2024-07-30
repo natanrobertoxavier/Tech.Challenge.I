@@ -3,4 +3,5 @@
 public enum NumberVersions
 {
     CreateUsersTable = 1,
+    CreateDDDTable = 2,
 }

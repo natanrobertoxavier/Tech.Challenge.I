@@ -11,7 +11,7 @@ public class UserController : TechChallangeController
 {
     [HttpPost]
     [ProducesResponseType(typeof(RegisteredUserResponseJson), StatusCodes.Status201Created)]
-    public async Task<IActionResult> RegistrarUsuario(
+    public async Task<IActionResult> RegisterUser(
         [FromServices] IRegisterUserUseCase useCase,
         [FromBody] RequestRegisterUserJson request)
     {
@@ -24,7 +24,7 @@ public class UserController : TechChallangeController
     [Route("change-password")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ServiceFilter(typeof(AuthenticatedUserAttribute))]
-    public async Task<IActionResult> AlterarSenha(
+    public async Task<IActionResult> ChangePassword(
         [FromServices] IChangePasswordUseCase useCase,
         [FromBody] RequestChangePasswordJson request)
     {
