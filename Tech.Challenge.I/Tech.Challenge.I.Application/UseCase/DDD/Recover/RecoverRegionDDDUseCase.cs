@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Tech.Challenge.I.Communication;
+using Tech.Challenge.I.Communication.Request.Enum;
 using Tech.Challenge.I.Communication.Response;
 using Tech.Challenge.I.Domain.Repositories.DDD;
 
@@ -12,16 +14,15 @@ public class RecoverRegionDDDUseCase(
 
     public async Task<IEnumerable<RegionDDDResponseJson>> Execute()
     {
-        try
-        {
-            var result = await _regionDDDReadOnlyRepository.RecoverAll();
+        var result = await _regionDDDReadOnlyRepository.RecoverAll();
 
-            return _mapper.Map<IEnumerable<RegionDDDResponseJson>>(result);
-        }
-        catch (Exception e)
-        {
-            var teste = e.Message;
-            throw;
-        }
+        return _mapper.Map<IEnumerable<RegionDDDResponseJson>>(result);
+    }
+
+    public async Task<IEnumerable<RegionDDDResponseJson>> Execute(RegionRequestEnum request)
+    {
+        var result = await _regionDDDReadOnlyRepository.RecoverByRegion(request.GetDescription());
+
+        return _mapper.Map<IEnumerable<RegionDDDResponseJson>>(result);
     }
 }

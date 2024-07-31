@@ -14,6 +14,9 @@ public class RegionDDDRepository(
     public async Task<IEnumerable<RegionDDD>> RecoverAll()
         => await _context.DDDRegions.ToListAsync();
 
+    public async Task<IEnumerable<RegionDDD>> RecoverByRegion(string region) =>
+        await _context.DDDRegions.Where(r => r.Region == region).ToListAsync();
+
     public async Task<bool> ThereIsDDDNumber(int ddd) => 
         await _context.DDDRegions.AnyAsync(c => c.DDD.Equals(ddd));
 }

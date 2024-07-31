@@ -3,6 +3,7 @@ using Tech.Challenge.I.Api.Filters;
 using Tech.Challenge.I.Application.UseCase.DDD.Recover;
 using Tech.Challenge.I.Application.UseCase.DDD.Register;
 using Tech.Challenge.I.Communication.Request;
+using Tech.Challenge.I.Communication.Request.Enum;
 using Tech.Challenge.I.Communication.Response;
 
 namespace Tech.Challenge.I.Api.Controllers;
@@ -30,6 +31,21 @@ public class RegionDDDController : TechChallangeController
         [FromServices] IRecoverRegionDDDUseCase useCase)
     {
         var result = await useCase.Execute();
+
+        if (result.Any())
+            return Ok(result);
+
+        return NoContent();
+    }
+
+    [HttpGet]
+    [Route("RecoverByRegion")]
+    [ProducesResponseType(typeof(IEnumerable<RegionDDDResponseJson>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> RecoverByRegion(RegionRequestEnum request,
+        [FromServices] IRecoverRegionDDDUseCase useCase)
+    {
+        var result = await useCase.Execute(request);
 
         if (result.Any())
             return Ok(result);
