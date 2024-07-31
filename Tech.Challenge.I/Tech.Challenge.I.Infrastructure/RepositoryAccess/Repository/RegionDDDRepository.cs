@@ -12,7 +12,7 @@ public class RegionDDDRepository(
         await _context.DDDRegions.AddAsync(ddd);
 
     public async Task<IEnumerable<RegionDDD>> RecoverAll()
-        => await _context.DDDRegions.AsNoTracking().ToListAsync();
+        => await _context.DDDRegions.ToListAsync();
 
     public async Task<bool> ThereIsDDDNumber(int ddd) => 
         await _context.DDDRegions.AnyAsync(c => c.DDD.Equals(ddd));

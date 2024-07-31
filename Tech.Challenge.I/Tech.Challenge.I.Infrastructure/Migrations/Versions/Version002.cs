@@ -14,7 +14,7 @@ public class Version002 : Migration
         var tabela = VersionBase.InsertStandardColumns(Create.Table("DDDRegions"));
 
         tabela
-            .WithColumn("DDD").AsString(100).NotNullable()
+            .WithColumn("DDD").AsInt32().NotNullable()
             .WithColumn("Region").AsString(30).NotNullable();
 
         Execute.Sql(@"ALTER TABLE DDDRegions
