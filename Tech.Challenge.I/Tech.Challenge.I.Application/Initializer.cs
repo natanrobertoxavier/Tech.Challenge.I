@@ -3,7 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Tech.Challenge.I.Application.Services.Cryptography;
 using Tech.Challenge.I.Application.Services.LoggedUser;
 using Tech.Challenge.I.Application.Services.Token;
-using Tech.Challenge.I.Application.UseCase.DDD;
+using Tech.Challenge.I.Application.UseCase.DDD.Recover;
+using Tech.Challenge.I.Application.UseCase.DDD.Register;
 using Tech.Challenge.I.Application.UseCase.User.ChangePassword;
 using Tech.Challenge.I.Application.UseCase.User.Login;
 using Tech.Challenge.I.Application.UseCase.User.Register;
@@ -39,5 +40,6 @@ public static class Initializer
         services.AddScoped<IChangePasswordUseCase, ChangePasswordUseCase>();
         services.AddScoped<ILoggedUser, LoggedUser>();
         services.AddScoped<IRegisterRegionDDDUseCase, RegisterRegionDDDUseCase>();
+        services.AddScoped<IRecoverRegionDDDUseCase, RecoverRegionDDDUseCase>();
     }
 }

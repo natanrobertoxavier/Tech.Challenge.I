@@ -88,6 +88,24 @@ namespace Tech.Challenge.I.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a DDD deve ser entre 10 e 99.
+        /// </summary>
+        public static string DDDBetweenTenNinetyNine {
+            get {
+                return ResourceManager.GetString("DDDBetweenTenNinetyNine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a DDD não informado.
+        /// </summary>
+        public static string DDDNotEmpty {
+            get {
+                return ResourceManager.GetString("DDDNotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Email já cadastrado.
         /// </summary>
         public static string EmailAlreadyRegistered {
@@ -124,6 +142,15 @@ namespace Tech.Challenge.I.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a A região informada é inválida.
+        /// </summary>
+        public static string InvalidRegion {
+            get {
+                return ResourceManager.GetString("InvalidRegion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Email do usuário é inválido.
         /// </summary>
         public static string InvalidUserEmail {
@@ -138,6 +165,24 @@ namespace Tech.Challenge.I.Exceptions {
         public static string MinimumSixCharacters {
             get {
                 return ResourceManager.GetString("MinimumSixCharacters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a É necessário informar a região.
+        /// </summary>
+        public static string RegionNotEmpty {
+            get {
+                return ResourceManager.GetString("RegionNotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a DDD já cadastrado.
+        /// </summary>
+        public static string ThereIsDDDNumber {
+            get {
+                return ResourceManager.GetString("ThereIsDDDNumber", resourceCulture);
             }
         }
         

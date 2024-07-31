@@ -126,6 +126,12 @@
   <data name="BlankUserPassword" xml:space="preserve">
     <value>Senha do usuário em branco</value>
   </data>
+  <data name="DDDBetweenTenNinetyNine" xml:space="preserve">
+    <value>DDD deve ser entre 10 e 99</value>
+  </data>
+  <data name="DDDNotEmpty" xml:space="preserve">
+    <value>DDD não informado</value>
+  </data>
   <data name="EmailAlreadyRegistered" xml:space="preserve">
     <value>Email já cadastrado</value>
   </data>
@@ -138,11 +144,20 @@
   <data name="InvalidLogin" xml:space="preserve">
     <value>E-mail ou senha incorretos</value>
   </data>
+  <data name="InvalidRegion" xml:space="preserve">
+    <value>A região informada é inválida</value>
+  </data>
   <data name="InvalidUserEmail" xml:space="preserve">
     <value>Email do usuário é inválido</value>
   </data>
   <data name="MinimumSixCharacters" xml:space="preserve">
     <value>Senha deve conter ao menos seis caracteres</value>
+  </data>
+  <data name="RegionNotEmpty" xml:space="preserve">
+    <value>É necessário informar a região</value>
+  </data>
+  <data name="ThereIsDDDNumber" xml:space="preserve">
+    <value>DDD já cadastrado</value>
   </data>
   <data name="UnknowError" xml:space="preserve">
     <value>Erro desconhecido</value>

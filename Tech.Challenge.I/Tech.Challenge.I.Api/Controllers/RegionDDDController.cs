@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Tech.Challenge.I.Api.Filters;
-using Tech.Challenge.I.Application.UseCase.DDD;
+using Tech.Challenge.I.Application.UseCase.DDD.Recover;
+using Tech.Challenge.I.Application.UseCase.DDD.Register;
 using Tech.Challenge.I.Communication.Request;
 using Tech.Challenge.I.Communication.Response;
 
@@ -10,13 +11,29 @@ namespace Tech.Challenge.I.Api.Controllers;
 public class RegionDDDController : TechChallangeController
 {
     [HttpPost]
-    [ProducesResponseType(typeof(RegionDDDResponseJson), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(IEnumerable<RegionDDDResponseJson>), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> RegisterDDD(
         [FromServices] IRegisterRegionDDDUseCase useCase,
-        [FromBody] RequestRegistrationRegionDDDJson request)
+        [FromBody] RequestRegionDDDJson request)
     {
-        var result = await useCase.Execute(request);
+        await useCase.Execute(request);
 
-        return Created(string.Empty, result);
+        return Created(string.Empty, null);
+    }
+
+    [HttpGet]
+    [Route("RecoverAll")]
+    [ProducesResponseType(typeof(IEnumerable<RegionDDDResponseJson>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> RecoverAll(
+        [FromServices] IRecoverRegionDDDUseCase useCase)
+    {
+        var result = await useCase.Execute();
+
+        if (result.Any())
+            return Ok(result);
+
+        return NoContent();
     }
 }

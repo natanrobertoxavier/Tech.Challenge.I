@@ -23,7 +23,7 @@ public class ExceptionFilters : IExceptionFilter
 
     private static void ProcessTechChallengeException(ExceptionContext context)
     {
-        if (context.Exception is ValidationErrosException)
+        if (context.Exception is ValidationErrorsException)
         {
             TratarErrosDeValidacaoException(context);
         }
@@ -35,7 +35,7 @@ public class ExceptionFilters : IExceptionFilter
 
     private static void TratarErrosDeValidacaoException(ExceptionContext context)
     {
-        var validationErrorException = context.Exception as ValidationErrosException;
+        var validationErrorException = context.Exception as ValidationErrorsException;
 
         context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
         context.Result = new ObjectResult(new ErrorResponseJson(validationErrorException.MensagensDeErro));

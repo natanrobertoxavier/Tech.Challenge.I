@@ -58,7 +58,7 @@ public class RegisterUserUseCase(
         if (!validationResult.IsValid)
         {
             var errorMessages = validationResult.Errors.Select(error => error.ErrorMessage).ToList();
-            throw new ValidationErrosException(errorMessages);
+            throw new ValidationErrorsException(errorMessages);
         }
     }
 }

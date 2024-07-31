@@ -47,7 +47,7 @@ public class ChangePasswordUseCase(
         if (!result.IsValid)
         {
             var mensagens = result.Errors.Select(x => x.ErrorMessage).ToList();
-            throw new ValidationErrosException(mensagens);
+            throw new ValidationErrorsException(mensagens);
         }
     }
 }

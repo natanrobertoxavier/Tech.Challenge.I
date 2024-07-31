@@ -2,4 +2,5 @@
 public interface IRegionDDDReadOnlyRepository
 {
     Task<bool> ThereIsDDDNumber(int ddd);
+    Task<IEnumerable<Entities.RegionDDD>> RecoverAll();
 }
