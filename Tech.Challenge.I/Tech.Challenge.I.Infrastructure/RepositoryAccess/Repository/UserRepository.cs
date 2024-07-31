@@ -5,18 +5,23 @@ using Tech.Challenge.I.Domain.Repositories.User;
 namespace Tech.Challenge.I.Infrastructure.RepositoryAccess.Repository;
 
 public class UserRepository(
-    TechChallengeContext context) : IUserReadOnlyRepository, 
+    TechChallengeContext context) : IUserReadOnlyRepository,
                                     IUserWriteOnlyRepository, 
                                     IUserUpdateOnlyRepository
 {
     private readonly TechChallengeContext _context = context;
 
+#pragma warning disable CS8603 // Possível retorno de referência nula.
+    public async Task<User> RecoverEmailPassword(string email, string password) => 
+        await _context.Users.AsNoTracking()
+            .FirstOrDefaultAsync(c => c.Email.Equals(email) &&
+                                 c.Password.Equals(password));
     public async Task<bool> ThereIsUserWithEmail(string email) => 
         await _context.Users.AnyAsync(c => c.Email.Equals(email));
 
     public async Task<User> RecoverByEmail(string email) =>
        await _context.Users.AsNoTracking()
-            .FirstOrDefaultAsync(c => c.Email.Equals(email)) ?? new User();
+            .FirstOrDefaultAsync(c => c.Email.Equals(email));
 
     public Task<User> RecoverByEmailPassword(string email, string senha)
     {
@@ -30,5 +35,6 @@ public class UserRepository(
         _context.Users.Update(user);
 
     public async Task<User> RecoverById(Guid id) => await _context.Users.
-            FirstOrDefaultAsync(c => c.Id == id) ?? new User();
+            FirstOrDefaultAsync(c => c.Id == id);
+#pragma warning restore CS8603 // Possível retorno de referência nula.
 }
