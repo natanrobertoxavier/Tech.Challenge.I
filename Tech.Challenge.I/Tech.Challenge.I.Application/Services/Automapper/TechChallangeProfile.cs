@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Tech.Challenge.I.Communication;
 using Tech.Challenge.I.Communication.Request.Enum;
+using Tech.Challenge.I.Communication.Response.Enum;
 
 namespace Tech.Challenge.I.Application.Services.Automapper;
 public class TechChallangeProfile : Profile
@@ -14,7 +15,7 @@ public class TechChallangeProfile : Profile
     private void EntityToRequest()
     {
         CreateMap<Domain.Entities.RegionDDD, Communication.Response.RegionDDDResponseJson>()
-            .ForMember(destiny => destiny.Region, config => config.MapFrom(origin => EnumExtensions.GetEnumValueFromDescription<RegionRequestEnum>(origin.Region)));
+            .ForMember(destiny => destiny.Region, config => config.MapFrom(origin => EnumExtensions.GetEnumValueFromDescription<RegionResponseEnum>(origin.Region)));
     }
 
     private void RequestToEntity()

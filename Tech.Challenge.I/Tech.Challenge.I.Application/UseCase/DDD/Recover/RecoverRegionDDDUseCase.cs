@@ -12,8 +12,16 @@ public class RecoverRegionDDDUseCase(
 
     public async Task<IEnumerable<RegionDDDResponseJson>> Execute()
     {
-        var result = await _regionDDDReadOnlyRepository.RecoverAll();
+        try
+        {
+            var result = await _regionDDDReadOnlyRepository.RecoverAll();
 
-        return _mapper.Map<IEnumerable<RegionDDDResponseJson>>(result);
+            return _mapper.Map<IEnumerable<RegionDDDResponseJson>>(result);
+        }
+        catch (Exception e)
+        {
+            var teste = e.Message;
+            throw;
+        }
     }
 }
