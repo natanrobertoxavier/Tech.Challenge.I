@@ -5,6 +5,7 @@ using Tech.Challenge.I.Domain.Extension;
 using Tech.Challenge.I.Infrastructure;
 using Tech.Challenge.I.Application;
 using Tech.Challenge.I.Application.Services.Automapper;
+using Tech.Challenge.I.Communication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,9 +13,15 @@ builder.Services.AddRouting(option => option.LowercaseUrls = true);
 
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(options =>
+    {
+        options.SerializerSettings.Converters.Add(new DescriptionEnumConverter());
+    });
 
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.AddSecurityDefinition("Bearer",
@@ -41,9 +48,11 @@ builder.Services.AddSwaggerGen(c =>
             Array.Empty<string>()
         }
     });
+    c.SchemaFilter<EnumSchemaFilter>();
 });
 
 builder.Services.AddInfrastructure(builder.Configuration);
+
 builder.Services.AddApplication(builder.Configuration);
 
 builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilters)));

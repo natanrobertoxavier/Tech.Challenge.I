@@ -1,20 +1,23 @@
-﻿using System.ComponentModel;
+﻿using Newtonsoft.Json;
+using System.ComponentModel;
 
 namespace Tech.Challenge.I.Communication.Request.Enum;
+
+[JsonConverter(typeof(DescriptionEnumConverter))]
 public enum RegionRequestEnum
 {
     [Description("Norte")]
-    Norte = 0,
+    Norte,
 
     [Description("Nordeste")]
-    Nordeste = 1,
+    Nordeste,
 
     [Description("CentroOeste")]
-    CentroOeste = 2,
+    CentroOeste,
 
     [Description("Sudeste")]
-    Sudeste = 3,
+    Sudeste,
 
     [Description("Sul")]
-    Sul = 4
+    Sul
 }
