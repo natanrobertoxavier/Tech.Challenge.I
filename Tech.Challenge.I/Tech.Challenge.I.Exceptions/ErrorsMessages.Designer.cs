@@ -61,6 +61,51 @@ namespace Tech.Challenge.I.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a DDD não informado.
+        /// </summary>
+        public static string BlankDDD {
+            get {
+                return ResourceManager.GetString("BlankDDD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Email em branco.
+        /// </summary>
+        public static string BlankEmail {
+            get {
+                return ResourceManager.GetString("BlankEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Nome em branco.
+        /// </summary>
+        public static string BlankFirstName {
+            get {
+                return ResourceManager.GetString("BlankFirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Sobrenome em branco.
+        /// </summary>
+        public static string BlankLastName {
+            get {
+                return ResourceManager.GetString("BlankLastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Telefone em branco.
+        /// </summary>
+        public static string BlankPhoneNumber {
+            get {
+                return ResourceManager.GetString("BlankPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Email do usuário em branco.
         /// </summary>
         public static string BlankUserEmail {
@@ -88,6 +133,15 @@ namespace Tech.Challenge.I.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Contato já cadastrado.
+        /// </summary>
+        public static string ContactAlreadyRegistered {
+            get {
+                return ResourceManager.GetString("ContactAlreadyRegistered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a DDD deve ser entre 10 e 99.
         /// </summary>
         public static string DDDBetweenTenNinetyNine {
@@ -97,11 +151,11 @@ namespace Tech.Challenge.I.Exceptions {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a DDD não informado.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a DDD não encontrado.
         /// </summary>
-        public static string DDDNotEmpty {
+        public static string DDDNotFound {
             get {
-                return ResourceManager.GetString("DDDNotEmpty", resourceCulture);
+                return ResourceManager.GetString("DDDNotFound", resourceCulture);
             }
         }
         
@@ -133,11 +187,29 @@ namespace Tech.Challenge.I.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Email inválido.
+        /// </summary>
+        public static string InvalidEmail {
+            get {
+                return ResourceManager.GetString("InvalidEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a E-mail ou senha incorretos.
         /// </summary>
         public static string InvalidLogin {
             get {
                 return ResourceManager.GetString("InvalidLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Telefone inválido.
+        /// </summary>
+        public static string InvalidPhoneNumber {
+            get {
+                return ResourceManager.GetString("InvalidPhoneNumber", resourceCulture);
             }
         }
         

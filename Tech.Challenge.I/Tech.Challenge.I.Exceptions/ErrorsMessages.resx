@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BlankDDD" xml:space="preserve">
+    <value>DDD não informado</value>
+  </data>
+  <data name="BlankEmail" xml:space="preserve">
+    <value>Email em branco</value>
+  </data>
+  <data name="BlankFirstName" xml:space="preserve">
+    <value>Nome em branco</value>
+  </data>
+  <data name="BlankLastName" xml:space="preserve">
+    <value>Sobrenome em branco</value>
+  </data>
+  <data name="BlankPhoneNumber" xml:space="preserve">
+    <value>Telefone em branco</value>
+  </data>
   <data name="BlankUserEmail" xml:space="preserve">
     <value>Email do usuário em branco</value>
   </data>
@@ -126,11 +141,14 @@
   <data name="BlankUserPassword" xml:space="preserve">
     <value>Senha do usuário em branco</value>
   </data>
+  <data name="ContactAlreadyRegistered" xml:space="preserve">
+    <value>Contato já cadastrado</value>
+  </data>
   <data name="DDDBetweenTenNinetyNine" xml:space="preserve">
     <value>DDD deve ser entre 10 e 99</value>
   </data>
-  <data name="DDDNotEmpty" xml:space="preserve">
-    <value>DDD não informado</value>
+  <data name="DDDNotFound" xml:space="preserve">
+    <value>DDD não encontrado</value>
   </data>
   <data name="EmailAlreadyRegistered" xml:space="preserve">
     <value>Email já cadastrado</value>
@@ -141,8 +159,14 @@
   <data name="InvalidCurrentPassword" xml:space="preserve">
     <value>Senha atual incorreta</value>
   </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>Email inválido</value>
+  </data>
   <data name="InvalidLogin" xml:space="preserve">
     <value>E-mail ou senha incorretos</value>
+  </data>
+  <data name="InvalidPhoneNumber" xml:space="preserve">
+    <value>Telefone inválido</value>
   </data>
   <data name="InvalidRegion" xml:space="preserve">
     <value>A região informada é inválida</value>

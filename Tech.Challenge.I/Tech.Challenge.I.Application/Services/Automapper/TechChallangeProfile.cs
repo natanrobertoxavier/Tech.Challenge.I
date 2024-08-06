@@ -9,10 +9,10 @@ public class TechChallangeProfile : Profile
     public TechChallangeProfile()
     {
         RequestToEntity();
-        EntityToRequest();
+        EntityToResponse();
     }
 
-    private void EntityToRequest()
+    private void EntityToResponse()
     {
         CreateMap<Domain.Entities.RegionDDD, Communication.Response.RegionDDDResponseJson>()
             .ForMember(destiny => destiny.Region, config => config.MapFrom(origin => EnumExtensions.GetEnumValueFromDescription<RegionResponseEnum>(origin.Region)));
@@ -25,5 +25,8 @@ public class TechChallangeProfile : Profile
 
         CreateMap<Communication.Request.RequestRegionDDDJson, Domain.Entities.RegionDDD>()
             .ForMember(destiny => destiny.Region, config => config.MapFrom(origin => origin.Region.GetDescription()));
+
+        CreateMap<Communication.Request.RequestContactJson, Domain.Entities.Contact>()
+            .ForMember(destiny => destiny.DDDId, config => config.Ignore());
     }
 }

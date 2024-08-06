@@ -16,7 +16,7 @@ public class RegisterRegionDDDValidator : AbstractValidator<RequestRegionDDDJson
             .WithMessage(ErrorsMessages.InvalidRegion);
         RuleFor(p => p.DDD)
             .NotEmpty()
-            .WithMessage(ErrorsMessages.DDDNotEmpty);
+            .WithMessage(ErrorsMessages.DDDNotFound);
 
         RuleFor(p => p.DDD)
             .InclusiveBetween(10, 99)
