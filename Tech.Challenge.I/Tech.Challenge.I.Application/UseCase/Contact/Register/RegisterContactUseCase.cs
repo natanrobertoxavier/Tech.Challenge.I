@@ -41,12 +41,12 @@ public class RegisterContactUseCase(
 
         var regionDDD = await _regionDDDReadOnlyRepository.RecoverByDDD(request.DDD);
 
-        if (regionDDD is null)
+        if (regionDDD is null || !regionDDD.Any())
             validationResult.Errors.Add(new FluentValidation.Results.ValidationFailure("ddd", 
                 ErrorsMessages.DDDNotFound));
 
         var thereIsContact = await _contactReadOnlyRepository.ThereIsRegisteredContact(
-            regionDDD is not null ? regionDDD.Id : GuidNull, 
+            regionDDD is not null ? regionDDD.Select(c => c.Id).FirstOrDefault() : GuidNull, 
             request.PhoneNumber);
 
         if (thereIsContact)
@@ -59,6 +59,6 @@ public class RegisterContactUseCase(
             throw new ValidationErrorsException(errorMessages);
         }
 
-        return regionDDD.Id;
+        return regionDDD.Select(c => c.Id).FirstOrDefault();
     }
 }

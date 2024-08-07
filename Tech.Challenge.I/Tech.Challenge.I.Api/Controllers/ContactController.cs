@@ -54,4 +54,20 @@ public class ContactController : TechChallangeController
 
         return NoContent();
     }
+
+    [HttpGet]
+    [Route("RecoverContactsByDDD")]
+    [ProducesResponseType(typeof(IEnumerable<ResponseContactJson>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> RecoverContactsByDDD(
+        [FromQuery] [Required] int ddd,
+        [FromServices] IRecoverContactUseCase useCase)
+    {
+        var result = await useCase.Execute(ddd);
+
+        if (result.Any())
+            return Ok(result);
+
+        return NoContent();
+    }
 }

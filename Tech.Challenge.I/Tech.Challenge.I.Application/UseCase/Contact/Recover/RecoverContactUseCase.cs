@@ -31,6 +31,15 @@ public class RecoverContactUseCase(
         return await MapToResponseContactJson(entities);
     }
 
+    public async Task<IEnumerable<ResponseContactJson>> Execute(int ddd)
+    {
+        var regionIds = await RecoverRegionIdByDDD(ddd);
+
+        var entities = await _contactReadOnlyRepository.RecoverByDDDId(regionIds);
+
+        return await MapToResponseContactJson(entities);
+    }
+
     private async Task<IEnumerable<ResponseContactJson>> MapToResponseContactJson(IEnumerable<Domain.Entities.Contact> entities)
     {
         try
@@ -74,6 +83,18 @@ public class RecoverContactUseCase(
             var ddd = await regionReadOnlyRepository.RecoverByRegion(region);
 
             return ddd.Select(ddd => ddd.Id).ToList();
+        }
+    }
+
+    private async Task<IEnumerable<Guid>> RecoverRegionIdByDDD(int ddd)
+    {
+        var (regionReadOnlyRepository, scope) = _repositoryFactory.Create();
+
+        using (scope)
+        {
+            var dddList = await regionReadOnlyRepository.RecoverByDDD(ddd);
+
+            return dddList.Select(ddd => ddd.Id).ToList();
         }
     }
 }

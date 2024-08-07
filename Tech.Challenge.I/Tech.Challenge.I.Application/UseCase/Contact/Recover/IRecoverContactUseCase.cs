@@ -6,4 +6,5 @@ public interface IRecoverContactUseCase
 {
     Task<IEnumerable<ResponseContactJson>> Execute();
     Task<IEnumerable<ResponseContactJson>> Execute(RegionRequestEnum region);
+    Task<IEnumerable<ResponseContactJson>> Execute(int ddd);
 }
