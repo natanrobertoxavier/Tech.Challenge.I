@@ -24,9 +24,9 @@ public class RecoverContactUseCase(
 
     public async Task<IEnumerable<ResponseContactJson>> Execute(RegionRequestEnum region)
     {
-        var regionIds = await RecoverRegionIdByRegion(region.GetDescription());
+        var dddIds = await RecoverDDDIdsByRegion(region.GetDescription());
 
-        var entities = await _contactReadOnlyRepository.RecoverByDDDId(regionIds);
+        var entities = await _contactReadOnlyRepository.RecoverAllByDDDId(dddIds);
 
         return await MapToResponseContactJson(entities);
     }
@@ -67,27 +67,27 @@ public class RecoverContactUseCase(
         return responseContactJson;
     }
 
-    private async Task<IEnumerable<Guid>> RecoverRegionIdByRegion(string region)
+    private async Task<IEnumerable<Guid>> RecoverDDDIdsByRegion(string region)
     {
         var (regionReadOnlyRepository, scope) = _repositoryFactory.Create();
 
         using (scope)
         {
-            var ddd = await regionReadOnlyRepository.RecoverByRegion(region);
+            var ddd = await regionReadOnlyRepository.RecoverListDDDByRegion(region);
 
             return ddd.Select(ddd => ddd.Id).ToList();
         }
     }
 
-    private async Task<IEnumerable<Guid>> RecoverRegionIdByDDD(int ddd)
+    private async Task<Guid> RecoverRegionIdByDDD(int ddd)
     {
         var (regionReadOnlyRepository, scope) = _repositoryFactory.Create();
 
         using (scope)
         {
-            var dddList = await regionReadOnlyRepository.RecoverByDDD(ddd);
+            var regionDDD = await regionReadOnlyRepository.RecoverByDDD(ddd);
 
-            return dddList.Select(ddd => ddd.Id).ToList();
+            return regionDDD.Id;
         }
     }
 }

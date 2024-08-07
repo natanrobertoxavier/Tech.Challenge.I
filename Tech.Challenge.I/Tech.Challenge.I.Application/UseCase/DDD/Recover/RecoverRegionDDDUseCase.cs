@@ -21,7 +21,7 @@ public class RecoverRegionDDDUseCase(
 
     public async Task<IEnumerable<ResponseRegionDDDJson>> Execute(RegionRequestEnum request)
     {
-        var result = await _regionDDDReadOnlyRepository.RecoverByRegion(request.GetDescription());
+        var result = await _regionDDDReadOnlyRepository.RecoverListDDDByRegion(request.GetDescription());
 
         return _mapper.Map<IEnumerable<ResponseRegionDDDJson>>(result);
     }

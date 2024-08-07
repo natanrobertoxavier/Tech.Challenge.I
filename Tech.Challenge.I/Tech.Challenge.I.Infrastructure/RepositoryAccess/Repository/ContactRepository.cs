@@ -18,8 +18,8 @@ public class ContactRepository(
     public async Task<IEnumerable<Contact>> RecoverAll() =>
         await _context.Contacts.ToListAsync();
 
-    public async Task<IEnumerable<Contact>> RecoverByDDDId(IEnumerable<Guid> ids) =>
-        await _context.Contacts.Where(c => ids.Contains(c.DDDId)).ToListAsync();
+    public async Task<IEnumerable<Contact>> RecoverByDDDId(Guid id) =>
+        await _context.Contacts.Where(c => c.DDDId.Equals(id)).ToListAsync();
 
     public async Task<Contact> RecoverByContactId(Guid id) =>
         await _context.Contacts.Where(c => c.Id.Equals(id)).FirstOrDefaultAsync();
@@ -27,4 +27,9 @@ public class ContactRepository(
     public void Remove(Contact contact) =>
         _context.Contacts.Remove(contact);
 
+    public void Update(Contact contact) =>
+        _context.Contacts.Update(contact);
+
+    public async Task<IEnumerable<Contact>> RecoverAllByDDDId(IEnumerable<Guid> dddIds) =>
+        await _context.Contacts.Where(c => dddIds.Contains(c.DDDId)).ToListAsync();
 }

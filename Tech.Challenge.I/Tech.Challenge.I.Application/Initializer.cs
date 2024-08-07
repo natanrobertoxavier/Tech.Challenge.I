@@ -6,6 +6,7 @@ using Tech.Challenge.I.Application.Services.Token;
 using Tech.Challenge.I.Application.UseCase.Contact.Delete;
 using Tech.Challenge.I.Application.UseCase.Contact.Recover;
 using Tech.Challenge.I.Application.UseCase.Contact.Register;
+using Tech.Challenge.I.Application.UseCase.Contact.Update;
 using Tech.Challenge.I.Application.UseCase.DDD.Recover;
 using Tech.Challenge.I.Application.UseCase.DDD.Register;
 using Tech.Challenge.I.Application.UseCase.User.ChangePassword;
@@ -47,5 +48,6 @@ public static class Initializer
         services.AddScoped<IRegisterContactUseCase, RegisterContactUseCase>();
         services.AddScoped<IRecoverContactUseCase, RecoverContactUseCase>();
         services.AddScoped<IDeleteContactUseCase, DeleteContactUseCase>();
+        services.AddScoped<IUpdateContactUseCase, UpdateContactUseCase>();
     }
 }

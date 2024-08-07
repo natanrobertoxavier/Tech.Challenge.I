@@ -4,6 +4,7 @@ using Tech.Challenge.I.Api.Filters;
 using Tech.Challenge.I.Application.UseCase.Contact.Delete;
 using Tech.Challenge.I.Application.UseCase.Contact.Recover;
 using Tech.Challenge.I.Application.UseCase.Contact.Register;
+using Tech.Challenge.I.Application.UseCase.Contact.Update;
 using Tech.Challenge.I.Communication.Request;
 using Tech.Challenge.I.Communication.Request.Enum;
 using Tech.Challenge.I.Communication.Response;
@@ -71,6 +72,19 @@ public class ContactController : TechChallangeController
             return Ok(result);
 
         return NoContent();
+    }
+
+    [HttpPut]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> Update(
+        [FromQuery] [Required] Guid id,
+        [FromBody] [Required] RequestContactJson request,
+        [FromServices] IUpdateContactUseCase useCase)
+    {
+        await useCase.Execute(id, request);
+
+        return Ok();
     }
 
     [HttpDelete]

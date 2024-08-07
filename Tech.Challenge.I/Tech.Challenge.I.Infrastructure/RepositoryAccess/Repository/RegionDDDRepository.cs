@@ -14,10 +14,10 @@ public class RegionDDDRepository(
     public async Task<IEnumerable<RegionDDD>> RecoverAll()
         => await _context.DDDRegions.ToListAsync();
 
-    public async Task<IEnumerable<RegionDDD>> RecoverByDDD(int dDD) =>
+    public async Task<IEnumerable<RegionDDD>> RecoverListByDDD(int dDD) =>
         await _context.DDDRegions.Where(c => c.DDD.Equals(dDD)).ToListAsync();
 
-    public async Task<IEnumerable<RegionDDD>> RecoverByRegion(string region) =>
+    public async Task<IEnumerable<RegionDDD>> RecoverListDDDByRegion(string region) =>
         await _context.DDDRegions.Where(r => r.Region == region).ToListAsync();
 
     public async Task<bool> ThereIsDDDNumber(int ddd) => 
@@ -25,4 +25,7 @@ public class RegionDDDRepository(
 
     public async Task<RegionDDD> RecoverById(Guid id) =>
         await _context.DDDRegions.Where(c => c.Id.Equals(id)).FirstOrDefaultAsync();
+
+    public async Task<RegionDDD> RecoverByDDD(int dDD) =>
+        await _context.DDDRegions.Where(c => c.DDD.Equals(dDD)).FirstOrDefaultAsync();
 }

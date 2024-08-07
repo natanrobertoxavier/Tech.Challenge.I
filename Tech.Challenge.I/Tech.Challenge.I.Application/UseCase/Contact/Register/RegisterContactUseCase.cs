@@ -39,7 +39,7 @@ public class RegisterContactUseCase(
         var validator = new RegisterContactValidator();
         var validationResult = validator.Validate(request);
 
-        var regionDDD = await _regionDDDReadOnlyRepository.RecoverByDDD(request.DDD);
+        var regionDDD = await _regionDDDReadOnlyRepository.RecoverListByDDD(request.DDD);
 
         if (regionDDD is null || !regionDDD.Any())
             validationResult.Errors.Add(new FluentValidation.Results.ValidationFailure("ddd", 
