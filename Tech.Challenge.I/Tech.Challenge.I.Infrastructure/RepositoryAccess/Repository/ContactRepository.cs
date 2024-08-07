@@ -20,4 +20,11 @@ public class ContactRepository(
 
     public async Task<IEnumerable<Contact>> RecoverByDDDId(IEnumerable<Guid> ids) =>
         await _context.Contacts.Where(c => ids.Contains(c.DDDId)).ToListAsync();
+
+    public async Task<Contact> RecoverByContactId(Guid id) =>
+        await _context.Contacts.Where(c => c.Id.Equals(id)).FirstOrDefaultAsync();
+
+    public void Remove(Contact contact) =>
+        _context.Contacts.Remove(contact);
+
 }

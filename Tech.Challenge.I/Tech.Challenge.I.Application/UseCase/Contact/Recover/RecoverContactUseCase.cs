@@ -42,36 +42,29 @@ public class RecoverContactUseCase(
 
     private async Task<IEnumerable<ResponseContactJson>> MapToResponseContactJson(IEnumerable<Domain.Entities.Contact> entities)
     {
-        try
+        var tasks = entities.Select(async entity =>
         {
-            var tasks = entities.Select(async entity =>
+            var (regionReadOnlyrepository, scope) = _repositoryFactory.Create();
+
+            using (scope)
             {
-                var (regionReadOnlyrepository, scope) = _repositoryFactory.Create();
+                var ddd = await regionReadOnlyrepository.RecoverById(entity.DDDId);
 
-                using (scope)
+                return new ResponseContactJson
                 {
-                    var ddd = await regionReadOnlyrepository.RecoverById(entity.DDDId);
+                    ContactId = entity.Id,
+                    FirstName = entity.FirstName,
+                    LastName = entity.LastName,
+                    DDD = ddd.DDD,
+                    Region = ddd.Region,
+                    Email = entity.Email,
+                    PhoneNumber = entity.PhoneNumber
+                };
+            }
+        });
 
-                    return new ResponseContactJson
-                    {
-                        FirstName = entity.FirstName,
-                        LastName = entity.LastName,
-                        DDD = ddd.DDD,
-                        Region = ddd.Region,
-                        Email = entity.Email,
-                        PhoneNumber = entity.PhoneNumber
-                    };
-                }
-            });
-
-            var responseContactJson = await Task.WhenAll(tasks);
-            return responseContactJson;
-        }
-        catch (Exception e)
-        {
-            var teste = e.Message;
-            throw;
-        }
+        var responseContactJson = await Task.WhenAll(tasks);
+        return responseContactJson;
     }
 
     private async Task<IEnumerable<Guid>> RecoverRegionIdByRegion(string region)

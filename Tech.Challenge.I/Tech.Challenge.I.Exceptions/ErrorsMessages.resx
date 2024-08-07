@@ -177,6 +177,9 @@
   <data name="MinimumSixCharacters" xml:space="preserve">
     <value>Senha deve conter ao menos seis caracteres</value>
   </data>
+  <data name="NoContactsFound" xml:space="preserve">
+    <value>Nenhum contato localizado</value>
+  </data>
   <data name="RegionNotEmpty" xml:space="preserve">
     <value>É necessário informar a região</value>
   </data>

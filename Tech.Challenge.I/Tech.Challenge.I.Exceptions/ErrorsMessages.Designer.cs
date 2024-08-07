@@ -241,6 +241,15 @@ namespace Tech.Challenge.I.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Nenhum contato localizado.
+        /// </summary>
+        public static string NoContactsFound {
+            get {
+                return ResourceManager.GetString("NoContactsFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a É necessário informar a região.
         /// </summary>
         public static string RegionNotEmpty {

@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Tech.Challenge.I.Application.Services.Cryptography;
 using Tech.Challenge.I.Application.Services.LoggedUser;
 using Tech.Challenge.I.Application.Services.Token;
+using Tech.Challenge.I.Application.UseCase.Contact.Delete;
 using Tech.Challenge.I.Application.UseCase.Contact.Recover;
 using Tech.Challenge.I.Application.UseCase.Contact.Register;
 using Tech.Challenge.I.Application.UseCase.DDD.Recover;
@@ -45,5 +46,6 @@ public static class Initializer
         services.AddScoped<IRecoverRegionDDDUseCase, RecoverRegionDDDUseCase>();
         services.AddScoped<IRegisterContactUseCase, RegisterContactUseCase>();
         services.AddScoped<IRecoverContactUseCase, RecoverContactUseCase>();
+        services.AddScoped<IDeleteContactUseCase, DeleteContactUseCase>();
     }
 }
