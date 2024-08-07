@@ -22,4 +22,7 @@ public class RegionDDDRepository(
 
     public async Task<bool> ThereIsDDDNumber(int ddd) => 
         await _context.DDDRegions.AnyAsync(c => c.DDD.Equals(ddd));
+
+    public async Task<RegionDDD> RecoverById(Guid id) =>
+        await _context.DDDRegions.Where(c => c.Id.Equals(id)).FirstOrDefaultAsync();
 }

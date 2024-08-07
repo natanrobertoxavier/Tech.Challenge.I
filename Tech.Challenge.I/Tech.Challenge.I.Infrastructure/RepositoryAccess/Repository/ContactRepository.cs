@@ -14,4 +14,7 @@ public class ContactRepository(
 
     public async Task Add(Contact contact) =>
         await _context.Contacts.AddAsync(contact);
+
+    public async Task<IEnumerable<Contact>> RecoverAll() =>
+        await _context.Contacts.ToListAsync();
 }

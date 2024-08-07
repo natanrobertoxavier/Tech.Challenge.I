@@ -10,7 +10,7 @@ namespace Tech.Challenge.I.Api.Controllers;
 public class UserController : TechChallangeController
 {
     [HttpPost]
-    [ProducesResponseType(typeof(RegisteredUserResponseJson), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ResponseRegisteredUserJson), StatusCodes.Status201Created)]
     public async Task<IActionResult> RegisterUser(
         [FromServices] IRegisterUserUseCase useCase,
         [FromBody] RequestRegisterUserJson request)

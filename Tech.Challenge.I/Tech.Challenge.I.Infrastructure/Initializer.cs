@@ -7,8 +7,10 @@ using Tech.Challenge.I.Domain.Extension;
 using Tech.Challenge.I.Domain.Repositories;
 using Tech.Challenge.I.Domain.Repositories.Contact;
 using Tech.Challenge.I.Domain.Repositories.DDD;
+using Tech.Challenge.I.Domain.Repositories.Factories;
 using Tech.Challenge.I.Domain.Repositories.User;
 using Tech.Challenge.I.Infrastructure.RepositoryAccess;
+using Tech.Challenge.I.Infrastructure.RepositoryAccess.Factories;
 using Tech.Challenge.I.Infrastructure.RepositoryAccess.Repository;
 
 namespace Tech.Challenge.I.Infrastructure;
@@ -20,6 +22,7 @@ public static class Initializer
         AddContext(services, configurationManager);
         AddRepositories(services);
         AddWorkUnit(services);
+        AddFactories(services);
     }
 
     private static void AddWorkUnit(IServiceCollection services)
@@ -62,9 +65,15 @@ public static class Initializer
             .AddScoped<IUserReadOnlyRepository, UserRepository>()
             .AddScoped<IUserWriteOnlyRepository, UserRepository>()
             .AddScoped<IUserUpdateOnlyRepository, UserRepository>()
-            .AddScoped <IRegionDDDReadOnlyRepository, RegionDDDRepository>()
-            .AddScoped <IRegionDDDWriteOnlyRepository, RegionDDDRepository>()
-            .AddScoped <IContactReadOnlyRepository, ContactRepository>()
-            .AddScoped <IContactWriteOnlyRepository, ContactRepository>();
+            .AddScoped<IRegionDDDReadOnlyRepository, RegionDDDRepository>()
+            .AddScoped<IRegionDDDWriteOnlyRepository, RegionDDDRepository>()
+            .AddScoped<IContactReadOnlyRepository, ContactRepository>()
+            .AddScoped<IContactWriteOnlyRepository, ContactRepository>();
+    }
+
+    private static void AddFactories(IServiceCollection services)
+    {
+        services
+            .AddSingleton<IRegionDDDReadOnlyRepositoryFactory, RegionDDDReadOnlyRepositoryFactory>();
     }
 }

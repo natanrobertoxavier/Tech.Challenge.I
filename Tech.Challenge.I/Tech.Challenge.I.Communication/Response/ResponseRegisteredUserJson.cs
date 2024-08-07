@@ -1,6 +1,6 @@
 ﻿namespace Tech.Challenge.I.Communication.Response;
 
-public class RegisteredUserResponseJson
+public class ResponseRegisteredUserJson
 {
     public string Token { get; set; }
 }

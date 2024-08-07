@@ -25,7 +25,7 @@ public class RegisterUserUseCase(
     private readonly PasswordEncryptor _passwordEncryptor = passwordEncryptor;
     private readonly TokenController _tokenController = tokenController;
 
-    public async Task<RegisteredUserResponseJson> Execute(RequestRegisterUserJson request)
+    public async Task<ResponseRegisteredUserJson> Execute(RequestRegisterUserJson request)
     {
         await Validate(request);
 
@@ -37,7 +37,7 @@ public class RegisterUserUseCase(
 
         var token = _tokenController.GenerateToken(entity.Email);
 
-        return new RegisteredUserResponseJson
+        return new ResponseRegisteredUserJson
         {
             Token = token
         };

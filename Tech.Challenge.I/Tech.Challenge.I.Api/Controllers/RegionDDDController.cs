@@ -12,7 +12,7 @@ namespace Tech.Challenge.I.Api.Controllers;
 public class RegionDDDController : TechChallangeController
 {
     [HttpPost]
-    [ProducesResponseType(typeof(IEnumerable<RegionDDDResponseJson>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(IEnumerable<ResponseRegionDDDJson>), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> RegisterDDD(
         [FromServices] IRegisterRegionDDDUseCase useCase,
@@ -25,7 +25,7 @@ public class RegionDDDController : TechChallangeController
 
     [HttpGet]
     [Route("RecoverAll")]
-    [ProducesResponseType(typeof(IEnumerable<RegionDDDResponseJson>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IEnumerable<ResponseRegionDDDJson>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> RecoverAll(
         [FromServices] IRecoverRegionDDDUseCase useCase)
@@ -40,7 +40,7 @@ public class RegionDDDController : TechChallangeController
 
     [HttpGet]
     [Route("RecoverByRegion")]
-    [ProducesResponseType(typeof(IEnumerable<RegionDDDResponseJson>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IEnumerable<ResponseRegionDDDJson>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> RecoverByRegion(RegionRequestEnum request,
         [FromServices] IRecoverRegionDDDUseCase useCase)

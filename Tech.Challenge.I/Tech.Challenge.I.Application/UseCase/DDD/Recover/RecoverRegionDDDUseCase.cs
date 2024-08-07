@@ -12,17 +12,17 @@ public class RecoverRegionDDDUseCase(
     private readonly IRegionDDDReadOnlyRepository _regionDDDReadOnlyRepository = regionDDDReadOnlyRepository;
     private readonly IMapper _mapper = mapper;
 
-    public async Task<IEnumerable<RegionDDDResponseJson>> Execute()
+    public async Task<IEnumerable<ResponseRegionDDDJson>> Execute()
     {
         var result = await _regionDDDReadOnlyRepository.RecoverAll();
 
-        return _mapper.Map<IEnumerable<RegionDDDResponseJson>>(result);
+        return _mapper.Map<IEnumerable<ResponseRegionDDDJson>>(result);
     }
 
-    public async Task<IEnumerable<RegionDDDResponseJson>> Execute(RegionRequestEnum request)
+    public async Task<IEnumerable<ResponseRegionDDDJson>> Execute(RegionRequestEnum request)
     {
         var result = await _regionDDDReadOnlyRepository.RecoverByRegion(request.GetDescription());
 
-        return _mapper.Map<IEnumerable<RegionDDDResponseJson>>(result);
+        return _mapper.Map<IEnumerable<ResponseRegionDDDJson>>(result);
     }
 }
