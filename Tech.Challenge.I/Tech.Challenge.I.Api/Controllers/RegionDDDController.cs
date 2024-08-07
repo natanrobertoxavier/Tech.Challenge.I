@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using Tech.Challenge.I.Api.Filters;
 using Tech.Challenge.I.Application.UseCase.DDD.Recover;
 using Tech.Challenge.I.Application.UseCase.DDD.Register;
@@ -42,10 +43,11 @@ public class RegionDDDController : TechChallangeController
     [Route("RecoverByRegion")]
     [ProducesResponseType(typeof(IEnumerable<ResponseRegionDDDJson>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> RecoverByRegion(RegionRequestEnum request,
+    public async Task<IActionResult> RecoverByRegion(
+        [FromQuery] [Required] RegionRequestEnum region,
         [FromServices] IRecoverRegionDDDUseCase useCase)
     {
-        var result = await useCase.Execute(request);
+        var result = await useCase.Execute(region);
 
         if (result.Any())
             return Ok(result);

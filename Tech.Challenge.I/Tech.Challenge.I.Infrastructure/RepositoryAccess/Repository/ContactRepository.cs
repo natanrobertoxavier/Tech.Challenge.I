@@ -17,4 +17,7 @@ public class ContactRepository(
 
     public async Task<IEnumerable<Contact>> RecoverAll() =>
         await _context.Contacts.ToListAsync();
+
+    public async Task<IEnumerable<Contact>> RecoverByDDDId(IEnumerable<Guid> ids) =>
+        await _context.Contacts.Where(c => ids.Contains(c.DDDId)).ToListAsync();
 }
