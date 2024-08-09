@@ -24,7 +24,7 @@ public class ContactController : TechChallangeController
     {
         await useCase.Execute(request);
 
-        return Created(string.Empty, null);
+        return Created(nameof(RecoverAllContacts), null);
     }
 
     [HttpGet]

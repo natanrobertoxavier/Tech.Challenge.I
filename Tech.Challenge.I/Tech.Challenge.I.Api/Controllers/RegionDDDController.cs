@@ -21,7 +21,7 @@ public class RegionDDDController : TechChallangeController
     {
         await useCase.Execute(request);
 
-        return Created(string.Empty, null);
+        return Created(nameof(RecoverAll), null);
     }
 
     [HttpGet]

@@ -17,7 +17,7 @@ public class UserController : TechChallangeController
     {
         var result = await useCase.Execute(request);
 
-        return Created(string.Empty, result);
+        return Created(nameof(LoginController.Login), result);
     }
 
     [HttpPut]
