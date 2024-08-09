@@ -1,7 +1,9 @@
 ﻿using FluentMigrator;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tech.Challenge.I.Infrastructure.Migrations.Versions;
 
+[ExcludeFromCodeCoverage]
 [Migration((long)NumberVersions.CreateUsersTable, "Create user table")]
 public class Version001 : Migration
 {

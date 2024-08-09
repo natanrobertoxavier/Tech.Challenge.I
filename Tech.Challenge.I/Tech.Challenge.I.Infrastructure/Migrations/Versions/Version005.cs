@@ -1,7 +1,9 @@
 ﻿using FluentMigrator;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tech.Challenge.I.Infrastructure.Migrations.Versions;
 
+[ExcludeFromCodeCoverage]
 [Migration((long)NumberVersions.AddUserIdTableContact, "Add userId table contacts")]
 public class Version005 : Migration
 {

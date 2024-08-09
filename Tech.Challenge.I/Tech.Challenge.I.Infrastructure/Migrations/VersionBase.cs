@@ -1,7 +1,9 @@
 ﻿using FluentMigrator.Builders.Create.Table;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tech.Challenge.I.Infrastructure.Migrations;
 
+[ExcludeFromCodeCoverage]
 public class VersionBase
 {
     public static ICreateTableColumnOptionOrWithColumnSyntax InsertStandardColumns(ICreateTableWithColumnOrSchemaOrDescriptionSyntax table)

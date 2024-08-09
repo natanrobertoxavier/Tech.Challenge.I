@@ -1,7 +1,10 @@
 ﻿using Dapper;
 using MySqlConnector;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tech.Challenge.I.Infrastructure.Migrations;
+
+[ExcludeFromCodeCoverage]
 public class Database
 {
     public static void CreateDatabase(string connectionWithDatabase, string databaseName)

@@ -1,7 +1,9 @@
 ﻿using FluentMigrator;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tech.Challenge.I.Infrastructure.Migrations.Versions;
 
+[ExcludeFromCodeCoverage]
 [Migration((long)NumberVersions.CreateDDDTable, "Create DDDRegions table")]
 public class Version002 : Migration
 {
