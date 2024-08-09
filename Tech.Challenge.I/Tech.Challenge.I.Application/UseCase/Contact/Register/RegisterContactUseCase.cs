@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Tech.Challenge.I.Application.Services.LoggedUser;
 using Tech.Challenge.I.Communication.Request;
 using Tech.Challenge.I.Communication.Response;
 using Tech.Challenge.I.Domain.Repositories;
@@ -13,21 +14,26 @@ public class RegisterContactUseCase(
     IRegionDDDReadOnlyRepository regionDDDReadOnlyRepository,
     IContactWriteOnlyRepository contactWriteOnlyRepository,
     IMapper mapper,
-    IWorkUnit workUnit) : IRegisterContactUseCase
+    IWorkUnit workUnit,
+    ILoggedUser loggedUser) : IRegisterContactUseCase
 {
     private readonly IContactReadOnlyRepository _contactReadOnlyRepository = contactReadOnlyRepository;
     private readonly IRegionDDDReadOnlyRepository _regionDDDReadOnlyRepository = regionDDDReadOnlyRepository;
     private readonly IContactWriteOnlyRepository _contactWriteOnlyRepository = contactWriteOnlyRepository;
     private readonly IMapper _mapper = mapper;
     private readonly IWorkUnit _workUnit = workUnit;
+    private readonly ILoggedUser _loggedUser = loggedUser;
     private Guid GuidNull = Guid.Parse("00000000-0000-0000-0000-000000000000");
 
     public async Task Execute(RequestContactJson request)
     {
         var dddId = await Validate(request);
 
+        var loggedUser = await _loggedUser.RecoverUser();
+
         var entity = _mapper.Map<Domain.Entities.Contact>(request);
         entity.DDDId = dddId;
+        entity.UserId = loggedUser.Id;
 
         await _contactWriteOnlyRepository.Add(entity);
 

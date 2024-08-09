@@ -12,9 +12,9 @@ public class Version003 : Migration
 
     public override void Up()
     {
-        var tabela = VersionBase.InsertStandardColumns(Create.Table("Contacts"));
+        var table = VersionBase.InsertStandardColumns(Create.Table("Contacts"));
 
-        tabela
+        table
             .WithColumn("FirstName").AsString(30).NotNullable()
             .WithColumn("LastName").AsString(30).NotNullable()
             .WithColumn("DDDId").AsGuid().NotNullable()

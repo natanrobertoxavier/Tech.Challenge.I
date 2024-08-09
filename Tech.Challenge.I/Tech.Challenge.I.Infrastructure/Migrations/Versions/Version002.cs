@@ -11,9 +11,9 @@ public class Version002 : Migration
 
     public override void Up()
     {
-        var tabela = VersionBase.InsertStandardColumns(Create.Table("DDDRegions"));
+        var table = VersionBase.InsertStandardColumns(Create.Table("DDDRegions"));
 
-        tabela
+        table
             .WithColumn("DDD").AsInt32().NotNullable()
             .WithColumn("Region").AsString(30).NotNullable();
 
