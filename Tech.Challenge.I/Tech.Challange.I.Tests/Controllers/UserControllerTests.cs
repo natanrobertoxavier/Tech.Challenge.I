@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Moq;
 using Tech.Challenge.I.Api.Controllers;
 using Tech.Challenge.I.Application.UseCase.User.ChangePassword;
 using Tech.Challenge.I.Application.UseCase.User.Register;
 using Tech.Challenge.I.Communication.Request;
 using Tech.Challenge.I.Communication.Response;
+using Tech.Challenge.I.Exceptions;
 using Tech.Challenge.I.Exceptions.ExceptionBase;
 
 namespace Tech.Challange.I.Tests.Controllers;
@@ -127,5 +128,37 @@ public class UserControllerTests
             controller.ChangePassword(mockUseCase.Object, request));
 
         Assert.Contains("Senha atual incorreta", exception.ErrorMessages);
+    }
+
+    [Fact]
+    public async Task ChangePassword_ReturnsUnauthorizedResult_WhenUserIsNotAuthenticated()
+    {
+        // Arrange
+        var mockUseCase = new Mock<IChangePasswordUseCase>();
+
+        var request = new RequestChangePasswordJson
+        {
+            CurrentPassword = "current_password",
+            NewPassword = "new_password"
+        };
+
+        var unauthorizedException = new ValidationErrorsException(new List<string>
+        {
+            "Usuário sem permissão",
+        });
+
+        mockUseCase.Setup(useCase => useCase.Execute(request))
+                   .ThrowsAsync(unauthorizedException);
+
+        var controller = new UserController();
+
+        // Act
+        var result = await Assert.ThrowsAsync<ValidationErrorsException>(() =>
+            controller.ChangePassword(mockUseCase.Object, request));
+
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Contains("Usuário sem permissão", result.ErrorMessages);
     }
 }

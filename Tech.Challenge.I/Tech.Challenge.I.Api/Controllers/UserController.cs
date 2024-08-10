@@ -23,6 +23,7 @@ public class UserController : TechChallangeController
     [HttpPut]
     [Route("change-password")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     [ServiceFilter(typeof(AuthenticatedUserAttribute))]
     public async Task<IActionResult> ChangePassword(
         [FromServices] IChangePasswordUseCase useCase,
