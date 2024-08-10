@@ -38,7 +38,7 @@ public class ExceptionFilters : IExceptionFilter
         var validationErrorException = context.Exception as ValidationErrorsException;
 
         context.HttpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
-        context.Result = new ObjectResult(new ErrorResponseJson(validationErrorException.MensagensDeErro));
+        context.Result = new ObjectResult(new ErrorResponseJson(validationErrorException.ErrorMessages));
     }
 
     private static void TratarLoginException(ExceptionContext context)

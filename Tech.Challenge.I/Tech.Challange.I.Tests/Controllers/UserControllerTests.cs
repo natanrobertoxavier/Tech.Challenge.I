@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Tech.Challenge.I.Api.Controllers;
+using Tech.Challenge.I.Application.UseCase.User.ChangePassword;
 using Tech.Challenge.I.Application.UseCase.User.Register;
 using Tech.Challenge.I.Communication.Request;
 using Tech.Challenge.I.Communication.Response;
+using Tech.Challenge.I.Exceptions.ExceptionBase;
 
 namespace Tech.Challange.I.Tests.Controllers;
 
@@ -18,12 +21,14 @@ public class UserControllerTests
 
         var request = new RequestRegisterUserJson
         {
-            // Inicialize as propriedades necessárias para o teste
+            Email = "new@email.com",
+            Password = "password",
+            Name = "name",
         };
 
         var response = new ResponseRegisteredUserJson
         {
-            // Inicialize as propriedades necessárias para o teste
+            Token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
         };
 
         mockUseCase.Setup(useCase => useCase.Execute(It.IsAny<RequestRegisterUserJson>()))
@@ -35,9 +40,92 @@ public class UserControllerTests
         var result = await controller.RegisterUser(mockUseCase.Object, request) as CreatedResult;
 
         // Assert
-        Assert.NotNull(result);
+        Assert.NotNull(result.Value);
         Assert.Equal(StatusCodes.Status201Created, result.StatusCode);
         Assert.Equal(nameof(LoginController.Login), result.Location);
         Assert.Equal(response, result.Value);
+    }
+
+    [Fact]
+    public async Task RegisterUser_ThrowsValidationErrorsException_WhenRequestIsInvalid()
+    {
+        // Arrange
+        var mockUseCase = new Mock<IRegisterUserUseCase>();
+        var request = new RequestRegisterUserJson
+        {
+            Name = "",
+            Email = "",
+            Password = ""
+        };
+
+        var validationErrors = new ValidationErrorsException(new List<string>
+        {
+            "Nome do usuário em branco",
+            "Email do usuário em branco",
+            "Senha do usuário em branco"
+        });
+
+        mockUseCase.Setup(useCase => useCase.Execute(request))
+                   .ThrowsAsync(validationErrors);
+
+        var controller = new UserController();
+
+        // Act & Assert
+        var exception = await Assert.ThrowsAsync<ValidationErrorsException>(() =>
+            controller.RegisterUser(mockUseCase.Object, request));
+
+        Assert.Equal(validationErrors.ErrorMessages, exception.ErrorMessages);
+    }
+
+    [Fact]
+    public async Task ChangePassword_ReturnsNoContentResult_WhenRequestIsValid()
+    {
+        // Arrange
+        var mockUseCase = new Mock<IChangePasswordUseCase>();
+        var request = new RequestChangePasswordJson
+        {
+            CurrentPassword = "current_password",
+            NewPassword = "new_password"
+        };
+
+        mockUseCase.Setup(useCase => useCase.Execute(request))
+                   .Returns(Task.CompletedTask);
+
+        var controller = new UserController();
+
+        // Act
+        var result = await controller.ChangePassword(mockUseCase.Object, request) as NoContentResult;
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(StatusCodes.Status204NoContent, result.StatusCode);
+    }
+
+    [Fact]
+    public async Task ChangePassword_ThrowsInvalidCurrentPasswordException_WhenCurrentPasswordIsInvalid()
+    {
+        // Arrange
+        var mockUseCase = new Mock<IChangePasswordUseCase>();
+        var request = new RequestChangePasswordJson
+        {
+            CurrentPassword = "wrong_current_password",
+            NewPassword = "new_password"
+        };
+
+        var invalidPasswordException = new ValidationErrorsException(new List<string>
+        {
+            "Senha atual incorreta",
+        });
+
+        mockUseCase.Setup(useCase => useCase.Execute(request))
+                   .ThrowsAsync(invalidPasswordException);
+
+        var controller = new UserController();
+
+        // Act & Assert
+        var exception = await Assert.ThrowsAsync<ValidationErrorsException>(() =>
+            controller.ChangePassword(mockUseCase.Object, request));
+
+        Assert.Contains("Senha atual incorreta", exception.ErrorMessages);
     }
 }
