@@ -60,8 +60,8 @@ public class ContactController : TechChallangeController
 
     [HttpGet]
     [Route("RecoverContactsByDDD")]
+    [ProducesResponseType(typeof(IEnumerable<ResponseContactJson>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> RecoverContactsByDDD(
         [FromQuery] [Required] int ddd,
         [FromServices] IRecoverContactUseCase useCase)
@@ -88,8 +88,8 @@ public class ContactController : TechChallangeController
     }
 
     [HttpDelete]
-    [ProducesResponseType(typeof(IEnumerable<ResponseContactJson>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> Remove(
         [FromQuery] [Required] Guid id,
         [FromServices] IDeleteContactUseCase useCase)

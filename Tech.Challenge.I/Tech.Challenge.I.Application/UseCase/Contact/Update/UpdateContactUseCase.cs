@@ -21,7 +21,9 @@ public class UpdateContactUseCase(
     public async Task Execute(Guid id, RequestContactJson request)
     {
         var contactToUpdate = _mapper.Map<Domain.Entities.Contact>(request);
+        
         var ddd = await _regionReadOnlyRepository.RecoverByDDD(request.DDD);
+        
         contactToUpdate.Id = id;
         contactToUpdate.DDDId = ddd.Id;
 
