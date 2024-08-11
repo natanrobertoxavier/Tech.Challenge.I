@@ -16,7 +16,7 @@ using Tech.Challenge.I.Domain.Entities;
 using Tech.Challenge.I.Exceptions;
 using Tech.Challenge.I.Exceptions.ExceptionBase;
 
-namespace Tech.Challange.I.Tests.Controllers;
+namespace Tech.Challenge.I.Tests.Controllers;
 public class ContactControllerTests
 {
     [Fact]

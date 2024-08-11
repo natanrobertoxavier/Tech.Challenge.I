@@ -3,7 +3,7 @@ using Tech.Challenge.I.Application.UseCase.Contact.Delete;
 using Tech.Challenge.I.Domain.Repositories;
 using Tech.Challenge.I.Domain.Repositories.Contact;
 
-namespace Tech.Challange.I.Tests.UseCase.Contact.Delete;
+namespace Tech.Challenge.I.Tests.UseCase.Contact.Delete;
 
 public class DeleteContactUseCaseTests
 {

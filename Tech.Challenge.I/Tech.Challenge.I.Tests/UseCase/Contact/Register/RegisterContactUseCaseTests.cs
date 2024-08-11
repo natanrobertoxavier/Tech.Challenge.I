@@ -9,7 +9,7 @@ using Tech.Challenge.I.Domain.Repositories.DDD;
 using Tech.Challenge.I.Domain.Repositories;
 using Tech.Challenge.I.Exceptions.ExceptionBase;
 
-namespace Tech.Challange.I.Tests.UseCase.Contact.Register;
+namespace Tech.Challenge.I.Tests.UseCase.Contact.Register;
 public class RegisterContactUseCaseTests
 {
     private readonly Mock<IContactReadOnlyRepository> _contactReadOnlyRepositoryMock = new();

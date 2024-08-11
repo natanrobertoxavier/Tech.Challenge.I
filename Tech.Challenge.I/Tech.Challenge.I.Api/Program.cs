@@ -59,7 +59,7 @@ builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilters))
 
 builder.Services.AddScoped(provider => new AutoMapper.MapperConfiguration(cfg =>
 {
-    cfg.AddProfile(new TechChallangeProfile());
+    cfg.AddProfile(new TechChallengeProfile());
 }).CreateMapper());
 
 builder.Services.AddScoped<AuthenticatedUserAttribute>();

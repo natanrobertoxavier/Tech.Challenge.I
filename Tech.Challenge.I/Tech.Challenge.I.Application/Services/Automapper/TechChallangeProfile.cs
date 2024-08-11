@@ -3,9 +3,9 @@ using Tech.Challenge.I.Communication;
 using Tech.Challenge.I.Communication.Response.Enum;
 
 namespace Tech.Challenge.I.Application.Services.Automapper;
-public class TechChallangeProfile : Profile
+public class TechChallengeProfile : Profile
 {
-    public TechChallangeProfile()
+    public TechChallengeProfile()
     {
         RequestToEntity();
         EntityToResponse();

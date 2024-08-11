@@ -5,7 +5,7 @@ using Tech.Challenge.I.Communication.Response;
 
 namespace Tech.Challenge.I.Api.Controllers;
 
-public class LoginController : TechChallangeController
+public class LoginController : TechChallengeController
 {
     [HttpPost]
     [ProducesResponseType(typeof(ResponseLoginJson), StatusCodes.Status200OK)]

@@ -11,7 +11,7 @@ using Tech.Challenge.I.Communication.Response;
 using Tech.Challenge.I.Communication.Response.Enum;
 using Tech.Challenge.I.Exceptions.ExceptionBase;
 
-namespace Tech.Challange.I.Tests.Controllers;
+namespace Tech.Challenge.I.Tests.Controllers;
 public class RegionDDDControllerTests
 {
     [Fact]

@@ -8,7 +8,7 @@ using Tech.Challenge.I.Domain.Repositories.DDD;
 using Tech.Challenge.I.Domain.Repositories.Factories;
 
 
-namespace Tech.Challange.I.Tests.UseCase.Contact.Recover;
+namespace Tech.Challenge.I.Tests.UseCase.Contact.Recover;
 public class RecoverContactUseCaseTests
 {
     private readonly Mock<IContactReadOnlyRepository> _mockContactReadOnlyRepository;

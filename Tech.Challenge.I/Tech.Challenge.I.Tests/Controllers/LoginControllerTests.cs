@@ -7,7 +7,7 @@ using Tech.Challenge.I.Communication.Request;
 using Tech.Challenge.I.Communication.Response;
 using Tech.Challenge.I.Exceptions.ExceptionBase;
 
-namespace Tech.Challange.I.Tests.Controllers;
+namespace Tech.Challenge.I.Tests.Controllers;
 public class LoginControllerTests
 {
     [Fact]

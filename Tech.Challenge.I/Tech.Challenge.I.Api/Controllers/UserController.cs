@@ -7,7 +7,7 @@ using Tech.Challenge.I.Communication.Response;
 
 namespace Tech.Challenge.I.Api.Controllers;
 
-public class UserController : TechChallangeController
+public class UserController : TechChallengeController
 {
     [HttpPost]
     [ProducesResponseType(typeof(ResponseRegisteredUserJson), StatusCodes.Status201Created)]

@@ -13,7 +13,7 @@ using Tech.Challenge.I.Exceptions;
 namespace Tech.Challenge.I.Api.Controllers;
 
 [ServiceFilter(typeof(AuthenticatedUserAttribute))]
-public class ContactController : TechChallangeController
+public class ContactController : TechChallengeController
 {
     [HttpPost]
     [ProducesResponseType(typeof(IEnumerable<ResponseContactJson>), StatusCodes.Status201Created)]

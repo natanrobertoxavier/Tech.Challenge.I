@@ -10,7 +10,7 @@ using Tech.Challenge.I.Communication.Response;
 namespace Tech.Challenge.I.Api.Controllers;
 
 [ServiceFilter(typeof(AuthenticatedUserAttribute))]
-public class RegionDDDController : TechChallangeController
+public class RegionDDDController : TechChallengeController
 {
     [HttpPost]
     [ProducesResponseType(typeof(IEnumerable<ResponseRegionDDDJson>), StatusCodes.Status201Created)]
