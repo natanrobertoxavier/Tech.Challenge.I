@@ -18,7 +18,6 @@ public class RegisterContactUseCaseTests
     private readonly Mock<IMapper> _mapperMock = new();
     private readonly Mock<IWorkUnit> _workUnitMock = new();
     private readonly Mock<ILoggedUser> _loggedUserMock = new();
-
     private readonly RegisterContactUseCase _useCase;
 
     public RegisterContactUseCaseTests()

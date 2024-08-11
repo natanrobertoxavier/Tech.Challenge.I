@@ -3,16 +3,16 @@ using Tech.Challenge.I.Communication.Request;
 using Tech.Challenge.I.Domain.Repositories;
 using Tech.Challenge.I.Domain.Repositories.Contact;
 using Tech.Challenge.I.Domain.Repositories.DDD;
+using Tech.Challenge.I.Exceptions.ExceptionBase;
+using Tech.Challenge.I.Exceptions;
 
 namespace Tech.Challenge.I.Application.UseCase.Contact.Update;
 public class UpdateContactUseCase(
-    IContactReadOnlyRepository contactReadOnlyRepository,
     IRegionDDDReadOnlyRepository regionReadOnlyRepository,
     IContactWriteOnlyRepository contactWriteOnlyRepository,
     IWorkUnit workUnit,
     IMapper mapper) : IUpdateContactUseCase
 {
-    private IContactReadOnlyRepository _contactReadOnlyRepository = contactReadOnlyRepository;
     private IContactWriteOnlyRepository _contactWriteOnlyRepository = contactWriteOnlyRepository;
     private IRegionDDDReadOnlyRepository _regionReadOnlyRepository = regionReadOnlyRepository;
     private IMapper _mapper = mapper;
@@ -22,7 +22,8 @@ public class UpdateContactUseCase(
     {
         var contactToUpdate = _mapper.Map<Domain.Entities.Contact>(request);
         
-        var ddd = await _regionReadOnlyRepository.RecoverByDDD(request.DDD);
+        var ddd = await _regionReadOnlyRepository.RecoverByDDD(request.DDD) ??
+            throw new ValidationErrorsException(new List<string>() { ErrorsMessages.DDDNotFound });
         
         contactToUpdate.Id = id;
         contactToUpdate.DDDId = ddd.Id;
