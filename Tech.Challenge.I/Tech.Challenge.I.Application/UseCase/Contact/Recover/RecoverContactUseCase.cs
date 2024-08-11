@@ -8,12 +8,10 @@ using Tech.Challenge.I.Domain.Repositories.Factories;
 namespace Tech.Challenge.I.Application.UseCase.Contact.Recover;
 public class RecoverContactUseCase(
     IContactReadOnlyRepository contactReadOnlyRepository,
-    IRegionDDDReadOnlyRepositoryFactory repositoryFactory,
-    IMapper mapper) : IRecoverContactUseCase
+    IRegionDDDReadOnlyRepositoryFactory repositoryFactory) : IRecoverContactUseCase
 {
     private readonly IContactReadOnlyRepository _contactReadOnlyRepository = contactReadOnlyRepository;
     private readonly IRegionDDDReadOnlyRepositoryFactory _repositoryFactory = repositoryFactory;
-    private readonly IMapper _mapper = mapper;
 
     public async Task<IEnumerable<ResponseContactJson>> Execute()
     {
@@ -37,7 +35,10 @@ public class RecoverContactUseCase(
 
         var entities = await _contactReadOnlyRepository.RecoverByDDDId(regionIds);
 
-        return await MapToResponseContactJson(entities);
+        if (entities is not null)
+            return await MapToResponseContactJson(entities);
+
+        return new List<ResponseContactJson>();
     }
 
     private async Task<IEnumerable<ResponseContactJson>> MapToResponseContactJson(IEnumerable<Domain.Entities.Contact> entities)
