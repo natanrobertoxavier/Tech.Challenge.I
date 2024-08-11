@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Tech.Challenge.I.Api.Controllers;
+using Tech.Challenge.I.Application.UseCase.Contact.Delete;
 using Tech.Challenge.I.Application.UseCase.Contact.Recover;
 using Tech.Challenge.I.Application.UseCase.Contact.Register;
 using Tech.Challenge.I.Application.UseCase.Contact.Update;
@@ -12,6 +13,7 @@ using Tech.Challenge.I.Communication.Request.Enum;
 using Tech.Challenge.I.Communication.Response;
 using Tech.Challenge.I.Communication.Response.Enum;
 using Tech.Challenge.I.Domain.Entities;
+using Tech.Challenge.I.Exceptions;
 using Tech.Challenge.I.Exceptions.ExceptionBase;
 
 namespace Tech.Challange.I.Tests.Controllers;
@@ -334,4 +336,88 @@ public class ContactControllerTests
         Assert.Equal(StatusCodes.Status200OK, result.StatusCode);
     }
 
+    [Fact]
+    public async Task Update_ReturnsNoContentResult_WhenIdIsInvalid()
+    {
+        // Arrange
+        var mockUseCase = new Mock<IUpdateContactUseCase>();
+
+        Guid invalidId = Guid.Empty;
+
+        var request = new RequestContactJson { FirstName = "John", LastName = "Doe", Email = "john.doe@example.com", PhoneNumber = "98888-8888", DDD = 11 };
+
+        var controller = new ContactController();
+
+        // Act
+        var result = await controller.Update(invalidId, request, mockUseCase.Object) as OkResult;
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(StatusCodes.Status200OK, result.StatusCode);
+    }
+    
+    [Fact]
+    public async Task Remove_ReturnsNoContent_WhenContactIsSuccessfullyRemoved()
+    {
+        // Arrange
+        var mockUseCase = new Mock<IDeleteContactUseCase>();
+
+        Guid validId = Guid.NewGuid();
+
+        mockUseCase.Setup(useCase => useCase.Execute(validId))
+                   .ReturnsAsync(true);
+
+        var controller = new ContactController();
+
+        // Act
+        var result = await controller.Remove(validId, mockUseCase.Object) as NoContentResult;
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(StatusCodes.Status204NoContent, result.StatusCode);
+    }
+
+    [Fact]
+    public async Task Remove_ReturnsUnprocessableEntity_WhenNoContactIsFound()
+    {
+        // Arrange
+        var mockUseCase = new Mock<IDeleteContactUseCase>();
+
+        Guid nonExistentId = Guid.NewGuid();
+
+        mockUseCase.Setup(useCase => useCase.Execute(nonExistentId))
+                   .ReturnsAsync(false);
+
+        var controller = new ContactController();
+
+        // Act
+        var result = await controller.Remove(nonExistentId, mockUseCase.Object) as UnprocessableEntityObjectResult;
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(StatusCodes.Status422UnprocessableEntity, result.StatusCode);
+        Assert.Equal(ErrorsMessages.NoContactsFound, result.Value);
+    }
+
+    [Fact]
+    public async Task Remove_ReturnsBadRequest_WhenIdIsInvalid()
+    {
+        // Arrange
+        var mockUseCase = new Mock<IDeleteContactUseCase>();
+
+        Guid invalidId = Guid.Empty;
+
+        mockUseCase.Setup(useCase => useCase.Execute(invalidId))
+                   .ReturnsAsync(false);
+
+        var controller = new ContactController();
+
+        // Act
+        var result = await controller.Remove(invalidId, mockUseCase.Object) as UnprocessableEntityObjectResult;
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(StatusCodes.Status422UnprocessableEntity, result.StatusCode);
+        Assert.Equal(ErrorsMessages.NoContactsFound, result.Value);
+    }
 }
