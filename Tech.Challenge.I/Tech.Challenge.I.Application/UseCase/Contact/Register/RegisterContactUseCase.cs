@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Tech.Challenge.I.Application.Services.LoggedUser;
 using Tech.Challenge.I.Communication.Request;
-using Tech.Challenge.I.Communication.Response;
 using Tech.Challenge.I.Domain.Repositories;
 using Tech.Challenge.I.Domain.Repositories.Contact;
 using Tech.Challenge.I.Domain.Repositories.DDD;
@@ -48,15 +47,15 @@ public class RegisterContactUseCase(
         var regionDDD = await _regionDDDReadOnlyRepository.RecoverListByDDD(request.DDD);
 
         if (regionDDD is null || !regionDDD.Any())
-            validationResult.Errors.Add(new FluentValidation.Results.ValidationFailure("ddd", 
+            validationResult.Errors.Add(new FluentValidation.Results.ValidationFailure("ddd",
                 ErrorsMessages.DDDNotFound));
 
         var thereIsContact = await _contactReadOnlyRepository.ThereIsRegisteredContact(
-            regionDDD is not null ? regionDDD.Select(c => c.Id).FirstOrDefault() : GuidNull, 
+            regionDDD is not null ? regionDDD.Select(c => c.Id).FirstOrDefault() : GuidNull,
             request.PhoneNumber);
 
         if (thereIsContact)
-            validationResult.Errors.Add(new FluentValidation.Results.ValidationFailure("contact", 
+            validationResult.Errors.Add(new FluentValidation.Results.ValidationFailure("contact",
                 ErrorsMessages.ContactAlreadyRegistered));
 
         if (!validationResult.IsValid)

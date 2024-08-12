@@ -1,11 +1,11 @@
 using Tech.Challenge.I.Api.Filters;
-using Tech.Challenge.I.Infrastructure.Migrations;
-using Tech.Challenge.I.Infrastructure.RepositoryAccess;
-using Tech.Challenge.I.Domain.Extension;
-using Tech.Challenge.I.Infrastructure;
 using Tech.Challenge.I.Application;
 using Tech.Challenge.I.Application.Services.Automapper;
 using Tech.Challenge.I.Communication;
+using Tech.Challenge.I.Domain.Extension;
+using Tech.Challenge.I.Infrastructure;
+using Tech.Challenge.I.Infrastructure.Migrations;
+using Tech.Challenge.I.Infrastructure.RepositoryAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 

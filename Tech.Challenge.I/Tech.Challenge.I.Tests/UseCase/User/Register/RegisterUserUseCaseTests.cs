@@ -1,14 +1,13 @@
 ﻿using AutoMapper;
 using Moq;
 using Tech.Challenge.I.Application.Services.Cryptography;
-using Tech.Challenge.I.Application.Services.Token;
 using Tech.Challenge.I.Application.UseCase.User.Register;
 using Tech.Challenge.I.Communication.Request;
-using Tech.Challenge.I.Domain.Repositories.User;
 using Tech.Challenge.I.Domain.Repositories;
-using Tech.Challenge.I.Tests.Mock;
-using Tech.Challenge.I.Exceptions.ExceptionBase;
+using Tech.Challenge.I.Domain.Repositories.User;
 using Tech.Challenge.I.Exceptions;
+using Tech.Challenge.I.Exceptions.ExceptionBase;
+using Tech.Challenge.I.Tests.Mock;
 
 namespace Tech.Challenge.I.Tests.UseCase.User.Register;
 public class RegisterUserUseCaseTests

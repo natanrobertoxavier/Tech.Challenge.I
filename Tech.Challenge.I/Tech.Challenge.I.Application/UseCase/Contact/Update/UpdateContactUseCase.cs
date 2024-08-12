@@ -3,8 +3,8 @@ using Tech.Challenge.I.Communication.Request;
 using Tech.Challenge.I.Domain.Repositories;
 using Tech.Challenge.I.Domain.Repositories.Contact;
 using Tech.Challenge.I.Domain.Repositories.DDD;
-using Tech.Challenge.I.Exceptions.ExceptionBase;
 using Tech.Challenge.I.Exceptions;
+using Tech.Challenge.I.Exceptions.ExceptionBase;
 
 namespace Tech.Challenge.I.Application.UseCase.Contact.Update;
 public class UpdateContactUseCase(
@@ -21,10 +21,10 @@ public class UpdateContactUseCase(
     public async Task Execute(Guid id, RequestContactJson request)
     {
         var contactToUpdate = _mapper.Map<Domain.Entities.Contact>(request);
-        
+
         var ddd = await _regionReadOnlyRepository.RecoverByDDD(request.DDD) ??
             throw new ValidationErrorsException(new List<string>() { ErrorsMessages.DDDNotFound });
-        
+
         contactToUpdate.Id = id;
         contactToUpdate.DDDId = ddd.Id;
 

@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using System.Net;
-using Tech.Challenge.I.Exceptions.ExceptionBase;
 using Tech.Challenge.I.Communication.Response;
 using Tech.Challenge.I.Exceptions;
+using Tech.Challenge.I.Exceptions.ExceptionBase;
 
 namespace Tech.Challenge.I.Api.Filters;
 

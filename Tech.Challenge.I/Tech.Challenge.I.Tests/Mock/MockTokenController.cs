@@ -4,7 +4,7 @@ namespace Tech.Challenge.I.Tests.Mock;
 public class MockTokenController(
     double tokenLifetimeInMinutes,
     string securityKey) : TokenController(
-        tokenLifetimeInMinutes, 
+        tokenLifetimeInMinutes,
         securityKey)
 {
     public string GenerateToken(string email)

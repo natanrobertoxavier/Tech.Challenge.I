@@ -10,7 +10,7 @@ public static class EnumExtensions
         DescriptionAttribute attribute = (DescriptionAttribute)field.GetCustomAttribute(typeof(DescriptionAttribute));
         return attribute == null ? value.ToString() : attribute.Description;
     }
-    
+
     public static T GetEnumValueFromDescription<T>(string description) where T : Enum
     {
         Dictionary<string, string> mapRegioes = new Dictionary<string, string>

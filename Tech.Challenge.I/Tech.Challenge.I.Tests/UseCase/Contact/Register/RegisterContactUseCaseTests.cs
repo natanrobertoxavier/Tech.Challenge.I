@@ -4,9 +4,9 @@ using Tech.Challenge.I.Application.Services.LoggedUser;
 using Tech.Challenge.I.Application.UseCase.Contact.Register;
 using Tech.Challenge.I.Communication.Request;
 using Tech.Challenge.I.Domain.Entities;
+using Tech.Challenge.I.Domain.Repositories;
 using Tech.Challenge.I.Domain.Repositories.Contact;
 using Tech.Challenge.I.Domain.Repositories.DDD;
-using Tech.Challenge.I.Domain.Repositories;
 using Tech.Challenge.I.Exceptions.ExceptionBase;
 
 namespace Tech.Challenge.I.Tests.UseCase.Contact.Register;
@@ -36,13 +36,13 @@ public class RegisterContactUseCaseTests
     public async Task Execute_ShouldRegisterContact_WhenValidRequest()
     {
         // Arrange
-        var request = new RequestContactJson 
+        var request = new RequestContactJson
         {
             FirstName = "John",
             LastName = "McLovin",
             Email = "email@email.com",
-            DDD = 11, 
-            PhoneNumber = "99999-9999" 
+            DDD = 11,
+            PhoneNumber = "99999-9999"
         };
 
         var dddList = new List<RegionDDD> { new() { Id = Guid.NewGuid() } };
@@ -66,11 +66,11 @@ public class RegisterContactUseCaseTests
         _loggedUserMock
             .Setup(x => x.RecoverUser())
             .ReturnsAsync(loggedUser);
-        
+
         _regionDDDReadOnlyRepositoryMock
             .Setup(x => x.RecoverListByDDD(request.DDD))
             .ReturnsAsync(dddList);
-        
+
         _contactReadOnlyRepositoryMock
             .Setup(x => x.ThereIsRegisteredContact(It.IsAny<Guid>(), request.PhoneNumber))
             .ReturnsAsync(false);
@@ -105,13 +105,13 @@ public class RegisterContactUseCaseTests
     {
         // Arrange
         var request = new RequestContactJson { DDD = 11, PhoneNumber = "99999-9999" };
-        
+
         var dddList = new List<RegionDDD> { new() { Id = Guid.NewGuid() } };
 
         _regionDDDReadOnlyRepositoryMock
             .Setup(x => x.RecoverListByDDD(request.DDD))
             .ReturnsAsync(dddList);
-        
+
         _contactReadOnlyRepositoryMock
             .Setup(x => x.ThereIsRegisteredContact(It.IsAny<Guid>(), request.PhoneNumber))
             .ReturnsAsync(true);
@@ -174,11 +174,11 @@ public class RegisterContactUseCaseTests
         _loggedUserMock
             .Setup(x => x.RecoverUser())
             .ReturnsAsync(loggedUser);
-        
+
         _regionDDDReadOnlyRepositoryMock
             .Setup(x => x.RecoverListByDDD(request.DDD))
             .ReturnsAsync(dddList);
-        
+
         _contactReadOnlyRepositoryMock
             .Setup(x => x.ThereIsRegisteredContact(It.IsAny<Guid>(), request.PhoneNumber))
             .ReturnsAsync(false);

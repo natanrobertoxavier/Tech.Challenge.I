@@ -44,7 +44,7 @@ public class RegionDDDController : TechChallengeController
     [ProducesResponseType(typeof(IEnumerable<ResponseRegionDDDJson>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> RecoverByRegion(
-        [FromQuery] [Required] RegionRequestEnum region,
+        [FromQuery][Required] RegionRequestEnum region,
         [FromServices] IRecoverRegionDDDUseCase useCase)
     {
         var result = await useCase.Execute(region);

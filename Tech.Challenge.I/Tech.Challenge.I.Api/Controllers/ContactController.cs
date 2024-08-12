@@ -47,7 +47,7 @@ public class ContactController : TechChallengeController
     [ProducesResponseType(typeof(IEnumerable<ResponseContactJson>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> RecoverContactsByRegion(
-        [FromQuery] [Required] RegionRequestEnum region,
+        [FromQuery][Required] RegionRequestEnum region,
         [FromServices] IRecoverContactUseCase useCase)
     {
         var result = await useCase.Execute(region);
@@ -63,7 +63,7 @@ public class ContactController : TechChallengeController
     [ProducesResponseType(typeof(IEnumerable<ResponseContactJson>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> RecoverContactsByDDD(
-        [FromQuery] [Required] int ddd,
+        [FromQuery][Required] int ddd,
         [FromServices] IRecoverContactUseCase useCase)
     {
         var result = await useCase.Execute(ddd);
@@ -78,8 +78,8 @@ public class ContactController : TechChallengeController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> Update(
-        [FromQuery] [Required] Guid id,
-        [FromBody] [Required] RequestContactJson request,
+        [FromQuery][Required] Guid id,
+        [FromBody][Required] RequestContactJson request,
         [FromServices] IUpdateContactUseCase useCase)
     {
         await useCase.Execute(id, request);
@@ -91,7 +91,7 @@ public class ContactController : TechChallengeController
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     public async Task<IActionResult> Remove(
-        [FromQuery] [Required] Guid id,
+        [FromQuery][Required] Guid id,
         [FromServices] IDeleteContactUseCase useCase)
     {
         var result = await useCase.Execute(id);

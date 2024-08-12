@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Tech.Challenge.I.Communication;
+﻿using Tech.Challenge.I.Communication;
 using Tech.Challenge.I.Communication.Request.Enum;
 using Tech.Challenge.I.Communication.Response;
 using Tech.Challenge.I.Domain.Repositories.Contact;

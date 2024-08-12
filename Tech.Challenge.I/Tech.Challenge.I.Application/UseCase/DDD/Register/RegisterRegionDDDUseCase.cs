@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation.Results;
 using Tech.Challenge.I.Application.Services.LoggedUser;
-using Tech.Challenge.I.Communication;
 using Tech.Challenge.I.Communication.Request;
 using Tech.Challenge.I.Domain.Repositories;
 using Tech.Challenge.I.Domain.Repositories.DDD;

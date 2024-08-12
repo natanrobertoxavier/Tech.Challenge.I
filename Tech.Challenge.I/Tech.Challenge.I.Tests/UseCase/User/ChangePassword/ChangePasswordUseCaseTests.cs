@@ -3,10 +3,10 @@ using Tech.Challenge.I.Application.Services.Cryptography;
 using Tech.Challenge.I.Application.Services.LoggedUser;
 using Tech.Challenge.I.Application.UseCase.User.ChangePassword;
 using Tech.Challenge.I.Communication.Request;
-using Tech.Challenge.I.Domain.Repositories.User;
 using Tech.Challenge.I.Domain.Repositories;
-using Tech.Challenge.I.Exceptions.ExceptionBase;
+using Tech.Challenge.I.Domain.Repositories.User;
 using Tech.Challenge.I.Exceptions;
+using Tech.Challenge.I.Exceptions.ExceptionBase;
 
 namespace Tech.Challenge.I.Tests.UseCase.User.ChangePassword;
 public class ChangePasswordUseCaseTests
@@ -84,7 +84,7 @@ public class ChangePasswordUseCaseTests
     public async Task Execute_ShouldThrowValidationErrorsException_WhenRequestIsInvalid()
     {
         // Arrange
-        var request = new RequestChangePasswordJson { CurrentPassword = "", NewPassword = "" }; 
+        var request = new RequestChangePasswordJson { CurrentPassword = "", NewPassword = "" };
         var loggedUser = new Domain.Entities.User { Id = Guid.NewGuid(), Password = "encryptedCurrentPass" };
 
         _mockLoggedUser

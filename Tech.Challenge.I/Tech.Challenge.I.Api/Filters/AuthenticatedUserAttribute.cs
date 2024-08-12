@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.IdentityModel.Tokens;
 using Tech.Challenge.I.Application.Services.Token;
-using Tech.Challenge.I.Domain.Repositories.User;
-using Tech.Challenge.I.Exceptions.ExceptionBase;
 using Tech.Challenge.I.Communication.Response;
-using FluentMigrator.Infrastructure;
+using Tech.Challenge.I.Domain.Repositories.User;
 using Tech.Challenge.I.Exceptions;
-using Microsoft.AspNetCore.Authorization;
+using Tech.Challenge.I.Exceptions.ExceptionBase;
 
 namespace Tech.Challenge.I.Api.Filters;
 

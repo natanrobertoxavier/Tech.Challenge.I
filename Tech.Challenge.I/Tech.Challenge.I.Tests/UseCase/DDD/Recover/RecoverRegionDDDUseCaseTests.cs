@@ -31,7 +31,7 @@ public class RecoverRegionDDDUseCaseTests
             new() { Id = Guid.NewGuid(), DDD = 11, Region = RegionResponseEnum.Sudeste.GetDescription() },
             new() { Id = Guid.NewGuid(), DDD = 14, Region = RegionResponseEnum.Sudeste.GetDescription() },
         };
-        
+
         var mappedResult = new List<ResponseRegionDDDJson>
         {
             new() { DDD = 11, Region = RegionResponseEnum.Sudeste.GetDescription() },
@@ -59,7 +59,7 @@ public class RecoverRegionDDDUseCaseTests
     public async Task Execute_ShouldReturnMappedResult_WhenRecoverListDDDByRegionIsCalled()
     {
         // Arrange
-        var request = RegionRequestEnum.Sul; 
+        var request = RegionRequestEnum.Sul;
 
         var dddList = new List<RegionDDD>
         {

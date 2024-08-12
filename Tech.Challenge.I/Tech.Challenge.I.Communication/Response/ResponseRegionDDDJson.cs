@@ -1,6 +1,4 @@
-﻿using Tech.Challenge.I.Communication.Request.Enum;
-
-namespace Tech.Challenge.I.Communication.Response;
+﻿namespace Tech.Challenge.I.Communication.Response;
 
 public class ResponseRegionDDDJson
 {

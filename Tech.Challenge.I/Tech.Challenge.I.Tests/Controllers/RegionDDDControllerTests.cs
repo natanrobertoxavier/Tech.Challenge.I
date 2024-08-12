@@ -135,7 +135,7 @@ public class RegionDDDControllerTests
         Assert.NotNull(result);
         Assert.Equal(StatusCodes.Status204NoContent, result.StatusCode);
     }
-    
+
     [Fact]
     public async Task RecoverAll_ReturnsUnauthorizedResult_WhenUserIsNotAuthorized()
     {
@@ -182,7 +182,7 @@ public class RegionDDDControllerTests
         Assert.Equal(StatusCodes.Status200OK, result.StatusCode);
         Assert.Equal(response, result.Value);
     }
-    
+
     [Fact]
     public async Task RecoverByRegion_ReturnsNoContentResult_WhenNoDataExists()
     {

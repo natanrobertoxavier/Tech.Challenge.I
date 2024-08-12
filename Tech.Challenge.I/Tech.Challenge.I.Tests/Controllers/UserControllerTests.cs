@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
 using Moq;
 using Tech.Challenge.I.Api.Controllers;
 using Tech.Challenge.I.Application.UseCase.User.ChangePassword;
 using Tech.Challenge.I.Application.UseCase.User.Register;
 using Tech.Challenge.I.Communication.Request;
 using Tech.Challenge.I.Communication.Response;
-using Tech.Challenge.I.Exceptions;
 using Tech.Challenge.I.Exceptions.ExceptionBase;
 
 namespace Tech.Challenge.I.Tests.Controllers;

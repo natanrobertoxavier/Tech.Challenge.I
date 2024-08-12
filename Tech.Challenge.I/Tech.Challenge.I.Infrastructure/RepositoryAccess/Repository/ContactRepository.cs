@@ -9,7 +9,7 @@ public class ContactRepository(
     private readonly TechChallengeContext _context = context;
 
     public Task<bool> ThereIsRegisteredContact(Guid dddId, string phoneNumber) =>
-        _context.Contacts.AnyAsync(c => c.PhoneNumber.Equals(phoneNumber) && 
+        _context.Contacts.AnyAsync(c => c.PhoneNumber.Equals(phoneNumber) &&
                                    c.DDDId.Equals(dddId));
 
     public async Task Add(Contact contact) =>

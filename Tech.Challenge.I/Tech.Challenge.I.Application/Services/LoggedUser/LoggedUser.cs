@@ -1,6 +1,6 @@
-﻿using Tech.Challenge.I.Application.Services.Token;
+﻿using Microsoft.AspNetCore.Http;
+using Tech.Challenge.I.Application.Services.Token;
 using Tech.Challenge.I.Domain.Entities;
-using Microsoft.AspNetCore.Http;
 using Tech.Challenge.I.Domain.Repositories.User;
 
 namespace Tech.Challenge.I.Application.Services.LoggedUser;

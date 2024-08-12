@@ -6,17 +6,17 @@ namespace Tech.Challenge.I.Infrastructure.RepositoryAccess.Repository;
 
 public class UserRepository(
     TechChallengeContext context) : IUserReadOnlyRepository,
-                                    IUserWriteOnlyRepository, 
+                                    IUserWriteOnlyRepository,
                                     IUserUpdateOnlyRepository
 {
     private readonly TechChallengeContext _context = context;
 
 #pragma warning disable CS8603 // Possível retorno de referência nula.
-    public async Task<User> RecoverEmailPassword(string email, string password) => 
+    public async Task<User> RecoverEmailPassword(string email, string password) =>
         await _context.Users.AsNoTracking()
             .FirstOrDefaultAsync(c => c.Email.Equals(email) &&
                                  c.Password.Equals(password));
-    public async Task<bool> ThereIsUserWithEmail(string email) => 
+    public async Task<bool> ThereIsUserWithEmail(string email) =>
         await _context.Users.AnyAsync(c => c.Email.Equals(email));
 
     public async Task<User> RecoverByEmail(string email) =>

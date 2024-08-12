@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Tech.Challenge.I.Api.Controllers;
@@ -12,7 +11,6 @@ using Tech.Challenge.I.Communication.Request;
 using Tech.Challenge.I.Communication.Request.Enum;
 using Tech.Challenge.I.Communication.Response;
 using Tech.Challenge.I.Communication.Response.Enum;
-using Tech.Challenge.I.Domain.Entities;
 using Tech.Challenge.I.Exceptions;
 using Tech.Challenge.I.Exceptions.ExceptionBase;
 
@@ -110,13 +108,13 @@ public class ContactControllerTests
         Assert.NotNull(result);
         Assert.Equal("Usuário sem permissão", result.Message);
     }
-    
+
     [Fact]
     public async Task RecoverAllContacts_ReturnsOkResult_WhenContactsExist()
     {
         // Arrange
         var contactId = Guid.NewGuid();
-            
+
         var mockUseCase = new Mock<IRecoverContactUseCase>();
 
         var response = new List<ResponseContactJson>
@@ -176,7 +174,7 @@ public class ContactControllerTests
         // Assert
         Assert.Equal("Usuário sem permissão", exception.Message);
     }
-    
+
     [Fact]
     public async Task RecoverContactsByRegion_ReturnsOkResult_WhenContactsExistInRegion()
     {
@@ -318,11 +316,11 @@ public class ContactControllerTests
     {
         // Arrange
         var mockUseCase = new Mock<IUpdateContactUseCase>();
-       
+
         var id = Guid.NewGuid();
-        
-        var request = new RequestContactJson  { FirstName = "John", LastName = "Doe", Email = "john.doe@example.com", PhoneNumber = "98888-8888", DDD = 11 };
-        
+
+        var request = new RequestContactJson { FirstName = "John", LastName = "Doe", Email = "john.doe@example.com", PhoneNumber = "98888-8888", DDD = 11 };
+
         mockUseCase.Setup(useCase => useCase.Execute(id, request))
                    .Returns(Task.CompletedTask);
 
@@ -355,7 +353,7 @@ public class ContactControllerTests
         Assert.NotNull(result);
         Assert.Equal(StatusCodes.Status200OK, result.StatusCode);
     }
-    
+
     [Fact]
     public async Task Remove_ReturnsNoContent_WhenContactIsSuccessfullyRemoved()
     {

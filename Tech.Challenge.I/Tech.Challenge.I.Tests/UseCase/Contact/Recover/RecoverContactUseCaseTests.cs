@@ -95,7 +95,7 @@ public class RecoverContactUseCaseTests
         };
 
         var regionDDD = new List<Challenge.I.Domain.Entities.RegionDDD>
-        { 
+        {
             new() { Id = regionDDDId[0], DDD = 11, Region = "Sudeste" }
         };
 
@@ -165,7 +165,9 @@ public class RecoverContactUseCaseTests
 
         var regionDDD = new Challenge.I.Domain.Entities.RegionDDD()
         {
-            Id = regionDDDId, DDD = 11, Region = "Sudeste" 
+            Id = regionDDDId,
+            DDD = 11,
+            Region = "Sudeste"
         };
 
         _mockRegionRepository
@@ -201,7 +203,9 @@ public class RecoverContactUseCaseTests
 
         var regionDDD = new Challenge.I.Domain.Entities.RegionDDD()
         {
-            Id = regionDDDId, DDD = 11, Region = "Sudeste" 
+            Id = regionDDDId,
+            DDD = 11,
+            Region = "Sudeste"
         };
 
         _mockRegionRepository
@@ -210,7 +214,7 @@ public class RecoverContactUseCaseTests
 
         _mockContactReadOnlyRepository
             .Setup(repo => repo.RecoverByDDDId(regionDDDId))
-            .ReturnsAsync((List<Challenge.I.Domain.Entities.Contact>) null);
+            .ReturnsAsync((List<Challenge.I.Domain.Entities.Contact>)null);
 
         _mockRegionRepository
             .Setup(repo => repo.RecoverById(regionDDDId))

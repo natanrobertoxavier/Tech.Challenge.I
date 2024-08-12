@@ -1,6 +1,5 @@
 ﻿using Moq;
 using Tech.Challenge.I.Application.Services.Cryptography;
-using Tech.Challenge.I.Application.Services.Token;
 using Tech.Challenge.I.Application.UseCase.User.Login;
 using Tech.Challenge.I.Communication.Request;
 using Tech.Challenge.I.Domain.Repositories.User;
