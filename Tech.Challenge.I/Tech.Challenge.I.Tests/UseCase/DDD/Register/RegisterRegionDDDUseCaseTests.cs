@@ -1,18 +1,17 @@
 ﻿using AutoMapper;
+using FluentValidation;
+using FluentValidation.Results;
 using Moq;
 using Tech.Challenge.I.Application.Services.LoggedUser;
 using Tech.Challenge.I.Application.UseCase.DDD.Register;
-using Tech.Challenge.I.Communication.Request;
-using Tech.Challenge.I.Domain.Entities;
-using Tech.Challenge.I.Domain.Repositories.DDD;
-using Tech.Challenge.I.Domain.Repositories;
-using Tech.Challenge.I.Communication.Request.Enum;
 using Tech.Challenge.I.Communication;
-using FluentValidation;
-using Tech.Challenge.I.Exceptions.ExceptionBase;
-using FluentValidation.Results;
-using FluentMigrator.Infrastructure;
+using Tech.Challenge.I.Communication.Request;
+using Tech.Challenge.I.Communication.Request.Enum;
+using Tech.Challenge.I.Domain.Entities;
+using Tech.Challenge.I.Domain.Repositories;
+using Tech.Challenge.I.Domain.Repositories.DDD;
 using Tech.Challenge.I.Exceptions;
+using Tech.Challenge.I.Exceptions.ExceptionBase;
 
 namespace Tech.Challenge.I.Tests.UseCase.DDD.Register;
 public class RegisterRegionDDDUseCaseTests
@@ -48,7 +47,7 @@ public class RegisterRegionDDDUseCaseTests
 
         var entity = new RegionDDD { DDD = 11, Region = RegionRequestEnum.Sudeste.GetDescription() };
 
-        var user = new User { Id = Guid.NewGuid(), Email = "email@email.com", Name = "McLovin" };
+        var user = new Domain.Entities.User { Id = Guid.NewGuid(), Email = "email@email.com", Name = "McLovin" };
 
         _mockMapper.Setup(m => m.Map<RegionDDD>(request)).Returns(entity);
         _mockLoggedUser
@@ -119,7 +118,7 @@ public class RegisterRegionDDDUseCaseTests
 
         var entity = new RegionDDD { DDD = 11 };
 
-        var user = new User { Id = Guid.NewGuid(), Email = "email@email.com", Name = "McLovin" };
+        var user = new Domain.Entities.User { Id = Guid.NewGuid(), Email = "email@email.com", Name = "McLovin" };
 
         _mockMapper
             .Setup(m => m.Map<RegionDDD>(request))

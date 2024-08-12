@@ -47,7 +47,7 @@ public class RegisterContactUseCaseTests
 
         var dddList = new List<RegionDDD> { new() { Id = Guid.NewGuid() } };
 
-        var loggedUser = new User { Id = Guid.NewGuid() };
+        var loggedUser = new Domain.Entities.User { Id = Guid.NewGuid() };
 
         var entity = new Challenge.I.Domain.Entities.Contact
         {
@@ -155,7 +155,7 @@ public class RegisterContactUseCaseTests
 
         var dddList = new List<RegionDDD> { new() { Id = Guid.NewGuid() } };
 
-        var loggedUser = new User { Id = Guid.NewGuid() };
+        var loggedUser = new Domain.Entities.User { Id = Guid.NewGuid() };
 
         var entity = new Challenge.I.Domain.Entities.Contact
         {
