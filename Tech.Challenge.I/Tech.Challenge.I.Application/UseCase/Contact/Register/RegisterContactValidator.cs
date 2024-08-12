@@ -4,7 +4,7 @@ using Tech.Challenge.I.Communication.Request;
 using Tech.Challenge.I.Exceptions;
 
 namespace Tech.Challenge.I.Application.UseCase.Contact.Register;
-internal class RegisterContactValidator : AbstractValidator<RequestContactJson>
+public class RegisterContactValidator : AbstractValidator<RequestContactJson>
 {
     public RegisterContactValidator()
     {
