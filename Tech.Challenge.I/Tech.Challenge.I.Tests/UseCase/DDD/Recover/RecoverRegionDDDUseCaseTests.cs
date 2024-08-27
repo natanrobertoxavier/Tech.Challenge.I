@@ -39,7 +39,7 @@ public class RecoverRegionDDDUseCaseTests
         };
 
         _mockRepository
-            .Setup(repo => repo.RecoverAll())
+            .Setup(repo => repo.RecoverAllAsync())
             .ReturnsAsync(dddList);
 
         _mockMapper
@@ -51,7 +51,7 @@ public class RecoverRegionDDDUseCaseTests
 
         // Assert
         Assert.Equal(mappedResult, result);
-        _mockRepository.Verify(repo => repo.RecoverAll(), Times.Once);
+        _mockRepository.Verify(repo => repo.RecoverAllAsync(), Times.Once);
         _mockMapper.Verify(mapper => mapper.Map<IEnumerable<ResponseRegionDDDJson>>(dddList), Times.Once);
     }
 
@@ -73,7 +73,7 @@ public class RecoverRegionDDDUseCaseTests
             new() { DDD = 42, Region = RegionResponseEnum.Sul.GetDescription() },
         };
         _mockRepository
-            .Setup(repo => repo.RecoverListDDDByRegion(request.GetDescription()))
+            .Setup(repo => repo.RecoverListDDDByRegionAsync(request.GetDescription()))
             .ReturnsAsync(dddList);
 
         _mockMapper
@@ -85,7 +85,7 @@ public class RecoverRegionDDDUseCaseTests
 
         // Assert
         Assert.Equal(mappedResult, result);
-        _mockRepository.Verify(repo => repo.RecoverListDDDByRegion(request.GetDescription()), Times.Once);
+        _mockRepository.Verify(repo => repo.RecoverListDDDByRegionAsync(request.GetDescription()), Times.Once);
         _mockMapper.Verify(mapper => mapper.Map<IEnumerable<ResponseRegionDDDJson>>(dddList), Times.Once);
     }
 
@@ -94,7 +94,7 @@ public class RecoverRegionDDDUseCaseTests
     {
         // Arrange
         _mockRepository
-            .Setup(repo => repo.RecoverAll())
+            .Setup(repo => repo.RecoverAllAsync())
             .ReturnsAsync(new List<RegionDDD>());
 
         _mockMapper
@@ -106,7 +106,7 @@ public class RecoverRegionDDDUseCaseTests
 
         // Assert
         Assert.Empty(result);
-        _mockRepository.Verify(repo => repo.RecoverAll(), Times.Once);
+        _mockRepository.Verify(repo => repo.RecoverAllAsync(), Times.Once);
         _mockMapper.Verify(mapper => mapper.Map<IEnumerable<ResponseRegionDDDJson>>(It.IsAny<IEnumerable<RegionDDD>>()), Times.Once);
     }
 
@@ -117,7 +117,7 @@ public class RecoverRegionDDDUseCaseTests
         var request = RegionRequestEnum.Nordeste;
 
         _mockRepository
-            .Setup(repo => repo.RecoverListDDDByRegion(request.GetDescription()))
+            .Setup(repo => repo.RecoverListDDDByRegionAsync(request.GetDescription()))
             .ReturnsAsync(new List<RegionDDD>());
 
         _mockMapper
@@ -129,7 +129,7 @@ public class RecoverRegionDDDUseCaseTests
 
         // Assert
         Assert.Empty(result);
-        _mockRepository.Verify(repo => repo.RecoverListDDDByRegion(request.GetDescription()), Times.Once);
+        _mockRepository.Verify(repo => repo.RecoverListDDDByRegionAsync(request.GetDescription()), Times.Once);
         _mockMapper.Verify(mapper => mapper.Map<IEnumerable<ResponseRegionDDDJson>>(It.IsAny<IEnumerable<RegionDDD>>()), Times.Once);
     }
 }

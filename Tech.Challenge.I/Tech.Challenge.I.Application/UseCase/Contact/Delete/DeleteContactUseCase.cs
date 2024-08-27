@@ -13,7 +13,7 @@ public class DeleteContactUseCase(
 
     public async Task<bool> Execute(Guid id)
     {
-        var contact = await _contactReadOnlyRepository.RecoverByContactId(id);
+        var contact = await _contactReadOnlyRepository.RecoverByContactIdAsync(id);
 
         if (contact is null)
             return false;

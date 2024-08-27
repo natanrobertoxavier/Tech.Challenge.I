@@ -44,7 +44,7 @@ public class UpdateContactUseCaseTests
             .Returns(contactToUpdate);
 
         _regionDDDReadOnlyRepositoryMock
-            .Setup(x => x.RecoverByDDD(request.DDD))
+            .Setup(x => x.RecoverByDDDAsync(request.DDD))
             .ReturnsAsync(ddd);
 
         // Act
@@ -65,7 +65,7 @@ public class UpdateContactUseCaseTests
         var request = new RequestContactJson { DDD = 11, PhoneNumber = "99999-9999" };
 
         _regionDDDReadOnlyRepositoryMock
-            .Setup(x => x.RecoverByDDD(request.DDD))
+            .Setup(x => x.RecoverByDDDAsync(request.DDD))
             .ReturnsAsync((RegionDDD)null);
 
         // Act & Assert
@@ -93,7 +93,7 @@ public class UpdateContactUseCaseTests
             .Returns(contactToUpdate);
 
         _regionDDDReadOnlyRepositoryMock
-            .Setup(x => x.RecoverByDDD(request.DDD))
+            .Setup(x => x.RecoverByDDDAsync(request.DDD))
             .ReturnsAsync(ddd);
 
         _workUnitMock

@@ -2,9 +2,9 @@
 public interface IRegionDDDReadOnlyRepository
 {
     Task<bool> ThereIsDDDNumber(int ddd);
-    Task<IEnumerable<Entities.RegionDDD>> RecoverAll();
-    Task<IEnumerable<Entities.RegionDDD>> RecoverListDDDByRegion(string region);
-    Task<IEnumerable<Entities.RegionDDD>> RecoverListByDDD(int dDD);
-    Task<Entities.RegionDDD> RecoverByDDD(int dDD);
-    Task<Entities.RegionDDD> RecoverById(Guid id);
+    Task<IEnumerable<Entities.RegionDDD>> RecoverAllAsync();
+    Task<IEnumerable<Entities.RegionDDD>> RecoverListDDDByRegionAsync(string region);
+    Task<IEnumerable<Entities.RegionDDD>> RecoverListByDDDAsync(int dDD);
+    Task<Entities.RegionDDD> RecoverByDDDAsync(int dDD);
+    Task<Entities.RegionDDD> RecoverByIdAsync(Guid id);
 }

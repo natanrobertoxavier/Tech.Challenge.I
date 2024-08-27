@@ -22,7 +22,7 @@ public class UpdateContactUseCase(
     {
         var contactToUpdate = _mapper.Map<Domain.Entities.Contact>(request);
 
-        var ddd = await _regionReadOnlyRepository.RecoverByDDD(request.DDD) ??
+        var ddd = await _regionReadOnlyRepository.RecoverByDDDAsync(request.DDD) ??
             throw new ValidationErrorsException(new List<string>() { ErrorsMessages.DDDNotFound });
 
         contactToUpdate.Id = id;

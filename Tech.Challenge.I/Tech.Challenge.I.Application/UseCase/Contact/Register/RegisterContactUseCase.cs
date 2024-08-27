@@ -22,7 +22,7 @@ public class RegisterContactUseCase(
     private readonly IMapper _mapper = mapper;
     private readonly IWorkUnit _workUnit = workUnit;
     private readonly ILoggedUser _loggedUser = loggedUser;
-    private Guid GuidNull = Guid.Parse("00000000-0000-0000-0000-000000000000");
+    private Guid GuidNull = Guid.Empty;
 
     public async Task Execute(RequestContactJson request)
     {
@@ -44,7 +44,7 @@ public class RegisterContactUseCase(
         var validator = new RegisterContactValidator();
         var validationResult = validator.Validate(request);
 
-        var regionDDD = await _regionDDDReadOnlyRepository.RecoverListByDDD(request.DDD);
+        var regionDDD = await _regionDDDReadOnlyRepository.RecoverListByDDDAsync(request.DDD);
 
         if (regionDDD is null || !regionDDD.Any())
             validationResult.Errors.Add(new FluentValidation.Results.ValidationFailure("ddd",

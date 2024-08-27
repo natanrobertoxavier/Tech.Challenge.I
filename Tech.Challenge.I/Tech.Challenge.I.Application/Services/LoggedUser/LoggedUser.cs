@@ -21,7 +21,7 @@ public class LoggedUser(
 
         var emailUsuario = _tokenController.RecoverEmail(token);
 
-        var usuario = await _repository.RecoverByEmail(emailUsuario);
+        var usuario = await _repository.RecoverByEmailAsync(emailUsuario);
 
         return usuario;
     }

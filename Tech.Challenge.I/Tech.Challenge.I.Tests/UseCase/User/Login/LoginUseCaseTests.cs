@@ -41,7 +41,7 @@ public class LoginUseCaseTests
         var user = new Domain.Entities.User { Name = "John McLovin", Email = "user@example.com" };
 
         _mockUserReadOnlyRepository
-            .Setup(r => r.RecoverEmailPassword(request.Email, encryptedPassword))
+            .Setup(r => r.RecoverEmailPasswordAsync(request.Email, encryptedPassword))
             .ReturnsAsync(user);
 
         // Act
@@ -49,7 +49,7 @@ public class LoginUseCaseTests
 
         // Assert
         Assert.Equal(user.Name, result.Name);
-        _mockUserReadOnlyRepository.Verify(r => r.RecoverEmailPassword(request.Email, encryptedPassword), Times.Once);
+        _mockUserReadOnlyRepository.Verify(r => r.RecoverEmailPasswordAsync(request.Email, encryptedPassword), Times.Once);
     }
 
     [Fact]
@@ -61,7 +61,7 @@ public class LoginUseCaseTests
         var encryptedPassword = _passwordEncryptor.Encrypt(request.Password);
 
         _mockUserReadOnlyRepository
-            .Setup(r => r.RecoverEmailPassword(request.Email, encryptedPassword))
+            .Setup(r => r.RecoverEmailPasswordAsync(request.Email, encryptedPassword))
             .ReturnsAsync((Domain.Entities.User)null);
 
         // Act & Assert
@@ -69,6 +69,6 @@ public class LoginUseCaseTests
 
         Assert.NotNull(exception);
         Assert.Equal(ErrorsMessages.InvalidLogin, exception.Message);
-        _mockUserReadOnlyRepository.Verify(r => r.RecoverEmailPassword(request.Email, encryptedPassword), Times.Once);
+        _mockUserReadOnlyRepository.Verify(r => r.RecoverEmailPasswordAsync(request.Email, encryptedPassword), Times.Once);
     }
 }

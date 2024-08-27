@@ -2,8 +2,8 @@
 public interface IContactReadOnlyRepository
 {
     Task<bool> ThereIsRegisteredContact(Guid dddId, string phoneNumber);
-    Task<IEnumerable<Entities.Contact>> RecoverAll();
-    Task<IEnumerable<Entities.Contact>> RecoverByDDDId(Guid id);
-    Task<IEnumerable<Entities.Contact>> RecoverAllByDDDId(IEnumerable<Guid> dddIds);
-    Task<Entities.Contact> RecoverByContactId(Guid id);
+    Task<IEnumerable<Entities.Contact>> RecoverAllAsync();
+    Task<IEnumerable<Entities.Contact>> RecoverByDDDIdAsync(Guid id);
+    Task<IEnumerable<Entities.Contact>> RecoverAllByDDDIdAsync(IEnumerable<Guid> dddIds);
+    Task<Entities.Contact> RecoverByContactIdAsync(Guid id);
 }

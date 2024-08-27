@@ -12,18 +12,18 @@ public class UserRepository(
     private readonly TechChallengeContext _context = context;
 
 #pragma warning disable CS8603 // Possível retorno de referência nula.
-    public async Task<User> RecoverEmailPassword(string email, string password) =>
+    public async Task<User> RecoverEmailPasswordAsync(string email, string password) =>
         await _context.Users.AsNoTracking()
             .FirstOrDefaultAsync(c => c.Email.Equals(email) &&
                                  c.Password.Equals(password));
     public async Task<bool> ThereIsUserWithEmail(string email) =>
         await _context.Users.AnyAsync(c => c.Email.Equals(email));
 
-    public async Task<User> RecoverByEmail(string email) =>
+    public async Task<User> RecoverByEmailAsync(string email) =>
        await _context.Users.AsNoTracking()
             .FirstOrDefaultAsync(c => c.Email.Equals(email));
 
-    public Task<User> RecoverByEmailPassword(string email, string senha)
+    public Task<User> RecoverByEmailPasswordAsync(string email, string senha)
     {
         throw new NotImplementedException();
     }

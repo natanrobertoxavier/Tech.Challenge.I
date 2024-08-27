@@ -29,7 +29,7 @@ public class AuthenticatedUserAttribute : AuthorizeAttribute, IAsyncAuthorizatio
             var token = TokenInRequest(context);
             var emailUsuario = _tokenController.RecoverEmail(token);
 
-            var usuario = await _repository.RecoverByEmail(emailUsuario) ?? throw new TechChallengeException(string.Empty);
+            var usuario = await _repository.RecoverByEmailAsync(emailUsuario) ?? throw new TechChallengeException(string.Empty);
         }
         catch (SecurityTokenExpiredException)
         {

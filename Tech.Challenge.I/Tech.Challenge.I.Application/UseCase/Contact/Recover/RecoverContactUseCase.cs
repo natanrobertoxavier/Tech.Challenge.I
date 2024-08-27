@@ -14,7 +14,7 @@ public class RecoverContactUseCase(
 
     public async Task<IEnumerable<ResponseContactJson>> Execute()
     {
-        var entities = await _contactReadOnlyRepository.RecoverAll();
+        var entities = await _contactReadOnlyRepository.RecoverAllAsync();
 
         return await MapToResponseContactJson(entities);
     }
@@ -23,7 +23,7 @@ public class RecoverContactUseCase(
     {
         var dddIds = await RecoverDDDIdsByRegion(region.GetDescription());
 
-        var entities = await _contactReadOnlyRepository.RecoverAllByDDDId(dddIds);
+        var entities = await _contactReadOnlyRepository.RecoverAllByDDDIdAsync(dddIds);
 
         return await MapToResponseContactJson(entities);
     }
@@ -32,7 +32,7 @@ public class RecoverContactUseCase(
     {
         var regionIds = await RecoverRegionIdByDDD(ddd);
 
-        var entities = await _contactReadOnlyRepository.RecoverByDDDId(regionIds);
+        var entities = await _contactReadOnlyRepository.RecoverByDDDIdAsync(regionIds);
 
         if (entities is not null)
             return await MapToResponseContactJson(entities);
@@ -48,7 +48,7 @@ public class RecoverContactUseCase(
 
             using (scope)
             {
-                var ddd = await regionReadOnlyrepository.RecoverById(entity.DDDId);
+                var ddd = await regionReadOnlyrepository.RecoverByIdAsync(entity.DDDId);
 
                 return new ResponseContactJson
                 {
@@ -73,7 +73,7 @@ public class RecoverContactUseCase(
 
         using (scope)
         {
-            var ddd = await regionReadOnlyRepository.RecoverListDDDByRegion(region);
+            var ddd = await regionReadOnlyRepository.RecoverListDDDByRegionAsync(region);
 
             return ddd.Select(ddd => ddd.Id).ToList();
         }
@@ -85,7 +85,7 @@ public class RecoverContactUseCase(
 
         using (scope)
         {
-            var regionDDD = await regionReadOnlyRepository.RecoverByDDD(ddd);
+            var regionDDD = await regionReadOnlyRepository.RecoverByDDDAsync(ddd);
 
             return regionDDD.Id;
         }

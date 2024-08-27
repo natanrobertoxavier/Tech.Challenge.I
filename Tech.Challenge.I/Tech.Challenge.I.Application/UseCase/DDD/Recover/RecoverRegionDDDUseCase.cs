@@ -14,14 +14,14 @@ public class RecoverRegionDDDUseCase(
 
     public async Task<IEnumerable<ResponseRegionDDDJson>> Execute()
     {
-        var result = await _regionDDDReadOnlyRepository.RecoverAll();
+        var result = await _regionDDDReadOnlyRepository.RecoverAllAsync();
 
         return _mapper.Map<IEnumerable<ResponseRegionDDDJson>>(result);
     }
 
     public async Task<IEnumerable<ResponseRegionDDDJson>> Execute(RegionRequestEnum request)
     {
-        var result = await _regionDDDReadOnlyRepository.RecoverListDDDByRegion(request.GetDescription());
+        var result = await _regionDDDReadOnlyRepository.RecoverListDDDByRegionAsync(request.GetDescription());
 
         return _mapper.Map<IEnumerable<ResponseRegionDDDJson>>(result);
     }

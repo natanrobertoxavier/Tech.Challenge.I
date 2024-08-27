@@ -68,7 +68,7 @@ public class RegisterContactUseCaseTests
             .ReturnsAsync(loggedUser);
 
         _regionDDDReadOnlyRepositoryMock
-            .Setup(x => x.RecoverListByDDD(request.DDD))
+            .Setup(x => x.RecoverListByDDDAsync(request.DDD))
             .ReturnsAsync(dddList);
 
         _contactReadOnlyRepositoryMock
@@ -90,7 +90,7 @@ public class RegisterContactUseCaseTests
         var request = new RequestContactJson { DDD = 11, PhoneNumber = "99999-9999" };
 
         _regionDDDReadOnlyRepositoryMock
-            .Setup(x => x.RecoverListByDDD(request.DDD))
+            .Setup(x => x.RecoverListByDDDAsync(request.DDD))
             .ReturnsAsync((IEnumerable<RegionDDD>)null);
 
         // Act & Assert
@@ -109,7 +109,7 @@ public class RegisterContactUseCaseTests
         var dddList = new List<RegionDDD> { new() { Id = Guid.NewGuid() } };
 
         _regionDDDReadOnlyRepositoryMock
-            .Setup(x => x.RecoverListByDDD(request.DDD))
+            .Setup(x => x.RecoverListByDDDAsync(request.DDD))
             .ReturnsAsync(dddList);
 
         _contactReadOnlyRepositoryMock
@@ -176,7 +176,7 @@ public class RegisterContactUseCaseTests
             .ReturnsAsync(loggedUser);
 
         _regionDDDReadOnlyRepositoryMock
-            .Setup(x => x.RecoverListByDDD(request.DDD))
+            .Setup(x => x.RecoverListByDDDAsync(request.DDD))
             .ReturnsAsync(dddList);
 
         _contactReadOnlyRepositoryMock

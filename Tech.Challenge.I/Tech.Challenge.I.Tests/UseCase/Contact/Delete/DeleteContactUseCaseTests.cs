@@ -31,7 +31,7 @@ public class DeleteContactUseCaseTests
         var contactId = Guid.NewGuid();
         var contact = new Challenge.I.Domain.Entities.Contact();
 
-        _mockReadOnlyRepository.Setup(repo => repo.RecoverByContactId(contactId))
+        _mockReadOnlyRepository.Setup(repo => repo.RecoverByContactIdAsync(contactId))
                                .ReturnsAsync(contact);
 
         // Act
@@ -49,7 +49,7 @@ public class DeleteContactUseCaseTests
         // Arrange
         var contactId = Guid.NewGuid();
 
-        _mockReadOnlyRepository.Setup(repo => repo.RecoverByContactId(contactId))
+        _mockReadOnlyRepository.Setup(repo => repo.RecoverByContactIdAsync(contactId))
                                .ReturnsAsync((Challenge.I.Domain.Entities.Contact)null);
 
         // Act
@@ -68,7 +68,7 @@ public class DeleteContactUseCaseTests
         var contactId = Guid.NewGuid();
         var contact = new Challenge.I.Domain.Entities.Contact();
 
-        _mockReadOnlyRepository.Setup(repo => repo.RecoverByContactId(contactId))
+        _mockReadOnlyRepository.Setup(repo => repo.RecoverByContactIdAsync(contactId))
                                .ReturnsAsync(contact);
 
         _mockWriteOnlyRepository.Setup(repo => repo.Remove(contact));

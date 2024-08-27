@@ -25,7 +25,6 @@ public class RegionDDDController : TechChallengeController
     }
 
     [HttpGet]
-    [Route("RecoverAll")]
     [ProducesResponseType(typeof(IEnumerable<ResponseRegionDDDJson>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> RecoverAll(
@@ -40,7 +39,7 @@ public class RegionDDDController : TechChallengeController
     }
 
     [HttpGet]
-    [Route("RecoverByRegion")]
+    [Route("DDD/by-region")]
     [ProducesResponseType(typeof(IEnumerable<ResponseRegionDDDJson>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> RecoverByRegion(

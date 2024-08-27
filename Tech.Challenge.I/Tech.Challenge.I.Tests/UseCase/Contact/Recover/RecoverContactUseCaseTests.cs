@@ -45,11 +45,11 @@ public class RecoverContactUseCaseTests
         var regionDDD = new Challenge.I.Domain.Entities.RegionDDD { DDD = 11, Region = "Sudeste" };
 
         _mockContactReadOnlyRepository
-            .Setup(repo => repo.RecoverAll())
+            .Setup(repo => repo.RecoverAllAsync())
             .ReturnsAsync(contacts);
 
         _mockRegionRepository
-            .Setup(repo => repo.RecoverById(regionDDDId))
+            .Setup(repo => repo.RecoverByIdAsync(regionDDDId))
             .ReturnsAsync(regionDDD);
 
         // Act
@@ -58,8 +58,8 @@ public class RecoverContactUseCaseTests
         // Assert
         Assert.NotNull(result);
         Assert.NotEmpty(result);
-        _mockContactReadOnlyRepository.Verify(repo => repo.RecoverAll(), Times.Once);
-        _mockRegionRepository.Verify(repo => repo.RecoverById(regionDDDId), Times.Once);
+        _mockContactReadOnlyRepository.Verify(repo => repo.RecoverAllAsync(), Times.Once);
+        _mockRegionRepository.Verify(repo => repo.RecoverByIdAsync(regionDDDId), Times.Once);
     }
 
     [Fact]
@@ -69,7 +69,7 @@ public class RecoverContactUseCaseTests
         var contacts = new List<Challenge.I.Domain.Entities.Contact>();
 
         _mockContactReadOnlyRepository
-            .Setup(repo => repo.RecoverAll())
+            .Setup(repo => repo.RecoverAllAsync())
             .ReturnsAsync(contacts);
 
         // Act
@@ -78,7 +78,7 @@ public class RecoverContactUseCaseTests
         // Assert
         Assert.NotNull(result);
         Assert.Empty(result);
-        _mockContactReadOnlyRepository.Verify(repo => repo.RecoverAll(), Times.Once);
+        _mockContactReadOnlyRepository.Verify(repo => repo.RecoverAllAsync(), Times.Once);
     }
 
     [Fact]
@@ -100,15 +100,15 @@ public class RecoverContactUseCaseTests
         };
 
         _mockContactReadOnlyRepository
-            .Setup(repo => repo.RecoverAllByDDDId(regionDDDId))
+            .Setup(repo => repo.RecoverAllByDDDIdAsync(regionDDDId))
             .ReturnsAsync(contacts);
 
         _mockRegionRepository
-            .Setup(repo => repo.RecoverListDDDByRegion(regionDescription))
+            .Setup(repo => repo.RecoverListDDDByRegionAsync(regionDescription))
             .ReturnsAsync(regionDDD);
 
         _mockRegionRepository
-            .Setup(repo => repo.RecoverById(regionDDDId[0]))
+            .Setup(repo => repo.RecoverByIdAsync(regionDDDId[0]))
             .ReturnsAsync(regionDDD[0]);
 
         // Act
@@ -117,8 +117,8 @@ public class RecoverContactUseCaseTests
         // Assert
         Assert.NotNull(result);
         Assert.NotEmpty(result);
-        _mockContactReadOnlyRepository.Verify(repo => repo.RecoverAllByDDDId(regionDDDId), Times.Once);
-        _mockRegionRepository.Verify(repo => repo.RecoverById(regionDDDId[0]), Times.Once);
+        _mockContactReadOnlyRepository.Verify(repo => repo.RecoverAllByDDDIdAsync(regionDDDId), Times.Once);
+        _mockRegionRepository.Verify(repo => repo.RecoverByIdAsync(regionDDDId[0]), Times.Once);
     }
 
     [Fact]
@@ -132,11 +132,11 @@ public class RecoverContactUseCaseTests
         var contacts = new List<Challenge.I.Domain.Entities.Contact>();
 
         _mockRegionRepository
-            .Setup(repo => repo.RecoverListDDDByRegion(regionDescription))
+            .Setup(repo => repo.RecoverListDDDByRegionAsync(regionDescription))
             .ReturnsAsync(new List<Challenge.I.Domain.Entities.RegionDDD>());
 
         _mockContactReadOnlyRepository
-            .Setup(repo => repo.RecoverAllByDDDId(dddIds))
+            .Setup(repo => repo.RecoverAllByDDDIdAsync(dddIds))
             .ReturnsAsync(contacts);
 
         // Act
@@ -145,8 +145,8 @@ public class RecoverContactUseCaseTests
         // Assert
         Assert.NotNull(result);
         Assert.Empty(result);
-        _mockRegionRepository.Verify(repo => repo.RecoverListDDDByRegion(regionDescription), Times.Once);
-        _mockContactReadOnlyRepository.Verify(repo => repo.RecoverAllByDDDId(dddIds), Times.Once);
+        _mockRegionRepository.Verify(repo => repo.RecoverListDDDByRegionAsync(regionDescription), Times.Once);
+        _mockContactReadOnlyRepository.Verify(repo => repo.RecoverAllByDDDIdAsync(dddIds), Times.Once);
     }
 
     [Fact]
@@ -171,15 +171,15 @@ public class RecoverContactUseCaseTests
         };
 
         _mockRegionRepository
-            .Setup(repo => repo.RecoverByDDD(ddd))
+            .Setup(repo => repo.RecoverByDDDAsync(ddd))
             .ReturnsAsync(regionDDD);
 
         _mockContactReadOnlyRepository
-            .Setup(repo => repo.RecoverByDDDId(regionDDDId))
+            .Setup(repo => repo.RecoverByDDDIdAsync(regionDDDId))
             .ReturnsAsync(contacts);
 
         _mockRegionRepository
-            .Setup(repo => repo.RecoverById(regionDDDId))
+            .Setup(repo => repo.RecoverByIdAsync(regionDDDId))
             .ReturnsAsync(regionDDD);
 
         // Act
@@ -188,8 +188,8 @@ public class RecoverContactUseCaseTests
         // Assert
         Assert.NotNull(result);
         Assert.NotEmpty(result);
-        _mockContactReadOnlyRepository.Verify(repo => repo.RecoverByDDDId(regionDDDId), Times.Once);
-        _mockRegionRepository.Verify(repo => repo.RecoverByDDD(ddd), Times.Once);
+        _mockContactReadOnlyRepository.Verify(repo => repo.RecoverByDDDIdAsync(regionDDDId), Times.Once);
+        _mockRegionRepository.Verify(repo => repo.RecoverByDDDAsync(ddd), Times.Once);
     }
 
     [Fact]
@@ -209,15 +209,15 @@ public class RecoverContactUseCaseTests
         };
 
         _mockRegionRepository
-            .Setup(repo => repo.RecoverByDDD(ddd))
+            .Setup(repo => repo.RecoverByDDDAsync(ddd))
             .ReturnsAsync(regionDDD);
 
         _mockContactReadOnlyRepository
-            .Setup(repo => repo.RecoverByDDDId(regionDDDId))
+            .Setup(repo => repo.RecoverByDDDIdAsync(regionDDDId))
             .ReturnsAsync((List<Challenge.I.Domain.Entities.Contact>)null);
 
         _mockRegionRepository
-            .Setup(repo => repo.RecoverById(regionDDDId))
+            .Setup(repo => repo.RecoverByIdAsync(regionDDDId))
             .ReturnsAsync(regionDDD);
 
         // Act
@@ -226,7 +226,7 @@ public class RecoverContactUseCaseTests
         // Assert
         Assert.NotNull(result);
         Assert.Empty(result);
-        _mockContactReadOnlyRepository.Verify(repo => repo.RecoverByDDDId(regionDDDId), Times.Once);
-        _mockRegionRepository.Verify(repo => repo.RecoverByDDD(ddd), Times.Once);
+        _mockContactReadOnlyRepository.Verify(repo => repo.RecoverByDDDIdAsync(regionDDDId), Times.Once);
+        _mockRegionRepository.Verify(repo => repo.RecoverByDDDAsync(ddd), Times.Once);
     }
 }

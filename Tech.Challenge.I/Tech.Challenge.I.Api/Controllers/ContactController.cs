@@ -28,7 +28,6 @@ public class ContactController : TechChallengeController
     }
 
     [HttpGet]
-    [Route("RecoverAllContacts")]
     [ProducesResponseType(typeof(IEnumerable<ResponseContactJson>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> RecoverAllContacts(
@@ -43,7 +42,7 @@ public class ContactController : TechChallengeController
     }
 
     [HttpGet]
-    [Route("RecoverContactsByRegion")]
+    [Route("contacts/by-region")]
     [ProducesResponseType(typeof(IEnumerable<ResponseContactJson>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> RecoverContactsByRegion(
@@ -59,7 +58,7 @@ public class ContactController : TechChallengeController
     }
 
     [HttpGet]
-    [Route("RecoverContactsByDDD")]
+    [Route("Contacts/By-DDD")]
     [ProducesResponseType(typeof(IEnumerable<ResponseContactJson>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> RecoverContactsByDDD(
